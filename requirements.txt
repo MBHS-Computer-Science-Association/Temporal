@@ -1,4 +1,5 @@
 NumPy >= 1.7.1
 SciPy >= 0.11
-Theano
+Theano >= 0.8
 nose >= 1.3.0
+g++ >= 4.2
