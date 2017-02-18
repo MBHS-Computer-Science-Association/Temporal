@@ -1,8 +1,3 @@
-import theano
-import theano.tensor as T
-import theano.tensor.nnet as nnet
-import numpy as np
-
-x = T.dscalar()
+import neurolab as nl
 
 print("hello world")
