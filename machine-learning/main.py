@@ -5,4 +5,4 @@ import numpy as np
 
 x = T.dscalar()
 
-print(x+5)
+print("hello world")
