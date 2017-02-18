@@ -1,0 +1,28 @@
+#login{
+  padding: 50px;
+  top:50%;
+  left: 50%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+  #login-form{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+  }
+
+  #login-button{
+    padding: 8px;
+  }
+
+  #signup{
+      padding: 50px;
+      top:50%;
+      left: 50%;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+  }
