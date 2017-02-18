@@ -16,7 +16,7 @@ var server = app.listen(app.get('port'), function() {
 });
 
 console.log("Hi. We're starting our python-shell tests.");
-python.run("main.py", function(err, results) {
+python.run("machine-learning/main.py", function(err, results) {
   if (err) throw err;
   console.log(results);
 });

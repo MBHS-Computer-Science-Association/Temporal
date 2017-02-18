@@ -6,6 +6,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "python-shell": "^0.4.0"
   }
 }
