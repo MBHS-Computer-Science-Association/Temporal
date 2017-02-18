@@ -5,4 +5,4 @@ import numpy as np
 
 x = T.dscalar()
 
-print(x)
+print(x+5)
