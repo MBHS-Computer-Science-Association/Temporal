@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/MBHS-Computer-Science-Association/Temporal.svg?branch=master)](https://travis-ci.org/MBHS-Computer-Science-Association/Temporal)
+
 # Temporal
 Because knowledge is temporal, but with us, it's not.
 
