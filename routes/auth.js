@@ -21,6 +21,7 @@ router.get('/login', function(req, res) {
 router.post('/login', function(req, res) {
   // authenticate login
   auth.login( req.query.username, req.query.password );
+  res.sendFile('login.html');
 });
 router.get('/signup', function(req, res) {
   // create an account
@@ -28,10 +29,12 @@ router.get('/signup', function(req, res) {
 });
 router.post('/signup', function(req, res) {
   auth.signup( req.query.username, req.query.password, req.query.email );
+  res.sendFile('signup.html');
 });
 router.get('/logout', function(req, res) {
   // TODO: session needs to be changed
   auth.logout( session );
+  res.sendFile('logout.html');
 });
 
 module.exports = router;
