@@ -3,10 +3,16 @@
   "version": "0.0.1",
   "description": "We make learning easier.",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "mocha"
   },
   "dependencies": {
     "express": "^4.14.0",
-    "python-shell": "^0.4.0"
+    "python-shell": "^0.4.0",
+    "express": "^4.14.0"
+  },
+  "devDependencies" : {
+    "chai": "*",
+    "mocha": "*"
   }
 }
