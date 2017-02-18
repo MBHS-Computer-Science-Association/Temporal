@@ -6,6 +6,10 @@
 var auth = {}; // create an empty object
 var db = require('./database');
 
+function passwordhash( pwd ) {
+  return 'something';
+}
+
 auth.login = function(username, password) {
   // search for user/pass combo
 
@@ -17,11 +21,18 @@ auth.login = function(username, password) {
 
 auth.signup = function(username, password, email) {
   // ensure username is unique
-  
+  var uniqueCheck = db.query('SELECT * FROM users WHERE username->>($1), row_number() OVER as rnum FROM users;', username );
+  if ( uniqueCheck !== 0 ) {
+    // user already exists
+    return false; // error
+  }
+  // otherwise, proceed
   // ensure email is valid
 
-  // add to database
+  var jsonstring = JSON.parse('{"username":"' + username + '", "password":"' + password + '", "email":"' + email + '"}');
 
+  // add to database
+  db.query('INSERT INTO users(id,data) VALUES ($1)', jsonstring);
 };
 
 auth.createSession = function() {
