@@ -94,6 +94,11 @@ describe('graphene database', () => {
   });
 
   describe('getRelatedNodes', () => {
-    it('should return all nodes directly related to the node');
+    it('should return all nodes directly related to the node', (done) => {
+      graphdb.getRelatedNodes(1, () => {
+        // assert that it actually got only the related nodes
+        done();
+      });
+    });
   });
 });
