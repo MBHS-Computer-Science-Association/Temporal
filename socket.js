@@ -7,7 +7,7 @@ var exports = module.exports = function(server) {
       console.log("User disconnected.");
     });
 
-    socket.on('answer', (ans)=>{
+    socket.on('answer', (ans) => {
       console.log(ans);
     });
   });
