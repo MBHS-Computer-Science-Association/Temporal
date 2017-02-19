@@ -33,7 +33,7 @@ describe('graphene database', () => {
 
   describe('getAllNodes', () => {
     it('should get all nodes', (done) => {
-      graphdb.getNode((nodes) => {
+      graphdb.getAllNodes((nodes) => {
         nodes.forEach((node) => {
           console.log(node);
         });
