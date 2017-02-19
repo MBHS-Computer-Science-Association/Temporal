@@ -33,7 +33,7 @@
 
 #graph-search{
   text-align: center;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 
 #edit{
@@ -59,4 +59,12 @@
 
 #menu{
   width: 250px;
+}
+
+#plotted-cards{
+  padding: 8px;
+}
+
+#top-menu{
+  padding-left: 300px;
 }

@@ -20,7 +20,11 @@ router.get('/sets', (req, res) => {
 });
 
 router.get('/graph', (req,res) => {
-  res.render('graph', {edit: false});
+  res.render('graph', {
+    edit: false,
+    definition: "definition",
+    term: "term"
+  });
 });
 
 module.exports = router;
