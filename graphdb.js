@@ -124,10 +124,25 @@ rep.relationshipEditDescription = function(relId, newDesc, callback) {
 // TODO: get all nodes ordered
 
 // TODO: delete relationship by id
-// TODO: get relationship by id
+
+rep.getRelationshipFromId = function(relId, callback) {
+  // MATCH ()-[r]-() WHERE id(r) = 135 RETURN DISTINCT {title: r.title, description: r.description, id: id(r)}
+  db.query("MATCH ()-[r]-() WHERE id(r) = {id} RETURN DISTINCT {title: r.title, description: r.description, id: id(r)}", {id: relId}, (err, result) => {
+    if (err) throw err;
+    if (callback) callback(result[0]);
+  });
+};
+
+
+rep.getRelationshipFromNodes = function(srcId, destId, callback) {
+  db.query("MATCH (a)-[r]-(b) WHERE id(a) = {src} AND id(b) = {dest} RETURN DISTINCT {title: r.title, description: r.description, id: id(r)}", {src: srcId, dest: destId}, (err, result) => {
+    if (err) throw err;
+    if (callback) callback(result);
+  });
+};
+
 // TODO: get all relationships
 
-// TODO: count nodes
 rep.getNodeCount = function(callback) {
   db.query("MATCH (n) RETURN count(DISTINCT n) as count", (err, result) => {
     if (err) throw err;
@@ -135,7 +150,19 @@ rep.getNodeCount = function(callback) {
   });
 };
 
-// TODO: search nodes by name
+rep.searchNodes = function(term, callback) {
+  var searchTerm = term.toLowerCase();
+
+  var query = `MATCH (n) WHERE lower(n.title) STARTS WITH {query} OR
+              lower(n.title) CONTAINS {query} OR
+              lower(n.description) STARTS WITH {query} OR
+              lower(n.description) CONTAINS {query}
+              RETURN {title: n.title, description: n.description, id: id(n)}`;
+  db.query(query, {query: searchTerm}, (err, result) => {
+    if (err) throw err;
+    if (callback) callback(result);
+  });
+};
 
 rep.getRelatedNodes = function(nodeId, callback) {
   db.query("MATCH (a)-[*1]-(b) WHERE id(a) = {id} RETURN DISTINCT {title: b.title, description: b.description, id: id(b)}", {id: nodeId}, (err, result) => {
