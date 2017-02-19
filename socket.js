@@ -12,7 +12,7 @@ var exports = module.exports = function(server) {
       console.log("User disconnected.");
     });
 
-    io.on('quiz', (quiz) => {isQuizzing = true;});
+  io.on('quiz', (quiz) => {isQuizzing = true;});
     if(isQuizzing == true){
       var totalNodes;
       db.getNodeCount((dat) => {
