@@ -1,3 +1,7 @@
+#title{
+  padding: 90px;
+}
+
 #login{
   padding: 50px;
   top:50%;
@@ -29,11 +33,13 @@
 
 #graph-search{
   text-align: center;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 
 #edit{
-  text-align: center;
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 10px;
 }
 
 #edit-card{
@@ -43,4 +49,22 @@
 #add-relationship{
   color: black;
   length: 50px;
+}
+
+
+#menu-grid{
+  text-align: left;
+  width: 200px;
+}
+
+#menu{
+  width: 250px;
+}
+
+#plotted-cards{
+  padding: 8px;
+}
+
+#top-menu{
+  padding-left: 300px;
 }
