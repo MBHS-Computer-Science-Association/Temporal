@@ -12,6 +12,8 @@ var rep = {};
 rep.createTestNode = function(callback) {
   db.query("CREATE (n {title: \"Sample Title\", description: \"Sample Description\"}) RETURN id(n)", (err, result) => {
     if (err) throw err;
+    console.log(result);
+    console.log(result[0].id);
     callback(result[0].id);
   });
 };
