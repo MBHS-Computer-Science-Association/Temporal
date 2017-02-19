@@ -33,6 +33,9 @@ router.post('/login', (req, res) => {
 
     res.render('login', params); // TODO: change to render
     */
+    res.send("Login success");
+  } else {
+    res.send("Login failure");
   }
 });
 router.get('/signup', (req, res) => {
@@ -40,13 +43,18 @@ router.get('/signup', (req, res) => {
   res.sendFile(path.resolve(__dirname + '/../public/signup.html'));
 });
 router.post('/signup', (req, res) => {
-  auth.signup( req.query.username, req.query.password, req.query.email );
+  if ( auth.signup( req.query.username, req.query.password, req.query.email ) ) {
+    res.send("Creation failure not detected or success");
+  } else {
+    res.send("Creation failure");
+  }
   // res.render('signup.html');
 });
 router.get('/logout', (req, res) => {
   // TODO: need to get session
   auth.destroySession( sess );
-  res.sendFile(path.resolve(__dirname + '/../public/logout.html'));
+  res.send("Logout successful");
+  // res.sendFile(path.resolve(__dirname + '/../public/logout.html'));
 });
 
 module.exports = router;

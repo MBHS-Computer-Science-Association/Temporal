@@ -45,6 +45,7 @@ auth.signup = (username, password, email) => {
   };
   // add to database
   db.query('INSERT INTO users(data) VALUES ($1)', JSON.stringify(jsonobj));
+  return true;
 };
 
 auth.createSession = (req, res, username) => {
