@@ -13,7 +13,7 @@ var exports = module.exports = function(server) {
 
     socket.on('quiz', (quiz) => {isQuizzing = true;});
     if(isQuizzing == true){
-      var totalNodes = db.nodeCount();//use JEffrey database to see how many nodes in user set
+      var totalNodes = db.getNodeCount();//use JEffrey database to see how many nodes in user set
       while(isQuizzing){
         if(totalNodes == 0){
           isQuizzing = false;
@@ -24,11 +24,13 @@ var exports = module.exports = function(server) {
         db.getAllNodes(function(param){
           list = param;
         });
-
+        var related;
         for(var i = 0; i < totalNodes; i++){
           if(list[i].id == totalNodes){
-            //data = [list[i].name];
-          }
+            rdb.getRelatedNodes(i, (info)=>{
+              related = info;
+            });//RANDOMIZE WHICH RELATED IT CHOOSES
+            data = [[list[i].name],[related[0]],[]];
         }
         data = [["Russian Revolution"],["Vietnam War"],["both are wars"], ["Thai", "Trevor", "both are the same person"],["Renaissance","Scientific Revolution","both changed the world"],["Donald Trump", "Vladimir Putin", "both are working for Russia"]];
 
@@ -37,6 +39,7 @@ var exports = module.exports = function(server) {
         while(!nextQuestion){
         socket.on('answer', (answer) => {
           //TODO: change the answer checker
+          console.log(answer);
           if(answer == 1){
             isCorrect = true;
           }
