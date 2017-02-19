@@ -31,12 +31,14 @@
         <div class="ui basic segment">
           <h3 class="ui header">Application Content</h3>
           <% sets.forEach((set) => { %>
-            <p>
-              <%= set.title %>
-            </p>
-            <p>
-              <%= set.description %>
-            </p>
+            <div class="ui segment">
+              <div class="sub header">
+                <%= set.title %>
+              </div>
+              <p>
+                <%= set.description %>
+              </p>
+            </div>
           <% }) %>
         </div>
       </div>
