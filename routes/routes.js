@@ -68,7 +68,7 @@ router.get('/graph/edit', (req,res) => {
 router.get('/graph/real', (req,res) => {
   graphdb.getAllNodes((response) => {
     res.render('graph', {
-      edit: true,
+      edit: false,
       cards: response
     });
   });
