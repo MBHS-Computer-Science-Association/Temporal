@@ -1,5 +1,7 @@
 var db = require('./graphdb');
 
+var graphsocket = require('./graphsocket');
+
 var exports = module.exports = function(server) {
   var io = require('socket.io')(server);
   var isQuizzing = false;
@@ -56,18 +58,11 @@ var exports = module.exports = function(server) {
       console.log(ans);
     });
 
-
-
-    socket.on('graph', function(graph) {
-      socket.emit('graph', graph);
-      console.log('Sending graph.');
-      console.log(graph);
-    });
-
-    socket.on('request_final_graph', function(callback) {
-      db.getSigmaGraph(callback);
-    });
-
+    /**
+     a little script for the graph database
+     so that the server can respond to client requests
+    */
+    graphsocket(socket);
   });
 
 
