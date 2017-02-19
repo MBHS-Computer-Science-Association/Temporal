@@ -32,7 +32,7 @@ auth.login = (username, password) => {
       throw err;
     }
     retrows.unshift(res.rows);
-    count = retrows[i].count;
+    count = retrows[0].count;
     db.end((err) => {
       if (err) {
         console.log("Error with ending");
