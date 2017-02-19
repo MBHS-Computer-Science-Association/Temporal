@@ -9,7 +9,7 @@ socket.on('data', (data) => {
 });
 
 $('.button').click(function(){
-  var isCorrect = false
+  var isCorrect = false;
   socket.emit('answer', $('input:radio[name=quiz]:checked').val());
   socket.on('nextQ', (bool) => {
     isCorrect = bool;

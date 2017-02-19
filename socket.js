@@ -13,15 +13,24 @@ var exports = module.exports = function(server) {
 
     socket.on('quiz', (quiz) => {isQuizzing = true;});
     if(isQuizzing == true){
-      var totalNodes = ;//use JEffrey database to see how many nodes in user set
+      var totalNodes = db.nodeCount();//use JEffrey database to see how many nodes in user set
       while(isQuizzing){
+        if(totalNodes == 0){
+          isQuizzing = false;
+        }
         var nextQuestion = false;
         var isCorrect = false;
-        var data;
+        var list, data;
+        db.getAllNodes(function(param){
+          list = param;
+        });
 
-      //TODO: do some array handling with the database
+        for(var i = 0; i < totalNodes; i++){
+          if(list[i].id == totalNodes){
+            data = [list[i].name, db.];
+          }
+        }
 
-      db.getAnswer()....
       socket.emit('data', data);
 
         while(!nextQuestion){
@@ -37,7 +46,7 @@ var exports = module.exports = function(server) {
            socket.emit('nextQ', false);
         }
       }
-
+      totalNodes--;
     }
   }
 
