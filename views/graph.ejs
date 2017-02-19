@@ -13,6 +13,13 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+
+    <div id="edit">
+      <button class="ui labeled icon button">
+        <i class="edit icon"></i>
+          Edit
+        </button>
+  </div>
     <div class="ui bottom attached segment pushable">
      <% include header.ejs%>
 
@@ -78,16 +85,12 @@
       <% } %>
       <!-- Loop through the cards, displaying them here () -->
       </div>
-      <div id="edit">
-        <button class="ui labeled icon button">
-          <i class="edit icon"></i>
-            Edit
-          </button>
-    </div>
+
       <div class="pusher">
         <div id="graph" class="ui basic segment">
           <h3 class="ui header">Application Content</h3>
             Graph
+            <!-- Sigma div (graph) goes here -->
         </div>
       </div>
     </div>
