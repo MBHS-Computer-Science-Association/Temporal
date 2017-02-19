@@ -27,11 +27,15 @@ auth.login = (username, password) => {
   // COUNT(*) vs *
   // var pwhres = passwordhash(password);
   db.query('SELECT * FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', [username], [password], ( err, res ) => {
-    if (err) throw err;
+    if (err) {
+      console.log("Error with DB query");
+      throw err;
+    }
     count++;
     rows.unshift(row.data);
     db.end((err) => {
       if (err) {
+        console.log("Error with ending");
         throw err;
       } else {
         console.log("COUNT: " + count);
