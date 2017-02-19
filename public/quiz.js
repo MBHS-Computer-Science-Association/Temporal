@@ -1,10 +1,5 @@
 var socket = io();
 
-socket.emit('imhere', 5);
-
-socket.on('responsefromscaredserver', (theirresponse) => {
-
-});
 
 $('form').submit(function(){
     socket.emit('chat message', $('#').val());
