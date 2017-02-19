@@ -16,17 +16,17 @@
       <% include header.ejs %>
       <div id="edit">
         <!-- Trying to handle editing on a separate url for simplicity -->
-         <a href="sets/edit" class="ui labeled icon button">
+         <a href="edit/" class="ui labeled icon button">
           <i class="edit icon"></i>
           Edit
          </a>
        </div>
       <div id="menu" class="ui visible inverted left vertical sidebar menu">
-        <a class="item" href="/index.html">
+        <a class="item" href="/">
           <i class="home icon"></i>
           Home
         </a>
-        <a class="item" href="#">
+        <a class="item" href="/sets">
           <i class="idea icon"></i>
           Sets
         </a>
@@ -42,7 +42,7 @@
           var $el = $(this);
 
           var $input = $('<input/>').val( $el.text() );
-          $el.replaceWith( $input + '<i class=\'checkmark icon\'></i>');
+          $el.replaceWith( $input );
 
           var save = function(){
             var $p = $('<p data-editable />').text( $input.val() );
