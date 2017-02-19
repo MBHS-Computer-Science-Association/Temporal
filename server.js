@@ -1,12 +1,11 @@
 var express = require('express');
 var app = express();
-var path = require('path');
 
 var routes = require('./routes/routes');
 var python = require('python-shell');
 
 app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'public'));
+app.set('views', "./views");
 app.set('view engine', 'ejs');
 
 app.use('/', routes);
