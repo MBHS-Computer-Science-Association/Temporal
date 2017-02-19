@@ -29,7 +29,7 @@ auth.login = (username, password) => {
 auth.signup = (username, password, email) => {
   // ensure username is unique
   var count = 0;
-  var query = db.query('SELECT COUNT(*) FROM users WHERE username->>($1);', ['username']);
+  var query = db.query('SELECT COUNT(*) FROM users WHERE data->>username = ($1);', ['username']);
   query.on('row', (row, res) => {
     count++;
     console.log(res.rows[0]);
