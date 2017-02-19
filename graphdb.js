@@ -38,6 +38,17 @@ rep.deleteNode = function(nodeId, callback) {
 };
 
 /**
+  nodeId - id of the node to find
+  callback - (node)
+*/
+rep.getNode = function(nodeId, callback) {
+  db.query("MATCH (n) WHERE id(n) = {id} RETURN n", {id: nodeId}, (err, result) => {
+    if (err) throw err;
+    if (callback) callback(result[0]);
+  });
+}
+
+/**
   nodeId - id of the node to edit
   newTitle - the new title of the node to edit
 */

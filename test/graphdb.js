@@ -20,4 +20,14 @@ describe('graphene database', () => {
       });
     });
   });
+
+  describe('getNode', () => {
+    it('should get the node', (done) => {
+      graphdb.getNode(10, (node) => {
+        console.log("node.title " + node.title);
+        console.log("node.description " + node.description);
+        done();
+      });
+    });
+  });
 });
