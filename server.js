@@ -16,7 +16,9 @@ var pg = require('pg'), session = require('express-session'), pgSession = requir
 app.set('port', process.env.PORT || 3000);
 
 app.use(session({
-  store: new pgSession(),
+  store: new pgSession({
+    conString: process.env.DATABASE_URL
+  }),
   secret: 'l30nard0daVichyFrance',
   resave: false,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
