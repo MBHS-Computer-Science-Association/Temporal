@@ -29,7 +29,7 @@ var exports = module.exports = function(server) {
           if(list[i].id == totalNodes){
             rdb.getRelatedNodes(i, (info)=>{
               related = info;
-            });//RANDOMIZE WHICH RELATED IT CHOOSES
+            });//RANDOMIZE WHICH RELATE
             data = [[list[i].name],[related[0]],[]];
         }
         data = [["Russian Revolution"],["Vietnam War"],["both are wars"], ["Thai", "Trevor", "both are the same person"],["Renaissance","Scientific Revolution","both changed the world"],["Donald Trump", "Vladimir Putin", "both are working for Russia"]];
@@ -39,7 +39,6 @@ var exports = module.exports = function(server) {
         while(!nextQuestion){
         socket.on('answer', (answer) => {
           //TODO: change the answer checker
-          console.log(answer);
           if(answer == 1){
             isCorrect = true;
           }
@@ -54,11 +53,10 @@ var exports = module.exports = function(server) {
       totalNodes--;
     }
   }
-
     socket.on('answer', (ans) => {
       console.log(ans);
     });
-  });
+  }
   var obj = {};
   return obj;
-};
+}
