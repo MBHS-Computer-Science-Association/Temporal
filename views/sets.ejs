@@ -40,29 +40,22 @@
           <script src="editable-text.js" language="javascript" type="text/javascript"></script>
           <h3 class="ui header">Application Content</h3>
           <% sets.forEach((set) => { %>
-            <% if(!edit){%>
               <div class="ui segment">
                 <div class="ui sub header">
-                  <a href="<%= set.id %>"><%= set.title %></a>
-              </div>
+                  <% if(!edit){%>
+                    <a href="<%= set.id %>"><%= set.title %></a>
+                    <% } %>
+                    <% else if(edit){ %>
+                      <p data-editable><%= set.title %></p>
+                    <% } %>
+                </div>
               <p>
                 <%= set.description %>
               </p>
             </div>
-            <%}else{%>
-              <div class="ui segment">
-                <div class="ui sub header">
-                  <p class="header" data-editable><%= set.title %></a>
-              </div>
-              <p data-editable>
-                <%= set.description %>
-              </p>
-            </div>
-            <% } %>
           <% }); %>
         </div>
       </div>
-      <p data-editable>Testing</p>
     </div>
   </body>
 </html>
