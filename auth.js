@@ -33,7 +33,7 @@ auth.login = (username, password) => {
     }
     retrows.unshift(res.rows);
     for ( i = 0; i < retrows.length; i++ ) {
-      console.log("Ret: " + retrows[i]);
+      console.log("Ret: " + JSON.stringify(retrows[i]));
     }
     count = res.rows[0];
     db.end((err) => {
