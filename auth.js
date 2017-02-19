@@ -26,7 +26,7 @@ auth.login = (username, password) => {
   var rows = [];
   // COUNT(*) vs *
   // var pwhres = passwordhash(password);
-  db.query('SELECT COUNT(*) FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', [username], [password], ( err, res ) => {
+  db.query('SELECT COUNT(*) FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', [username,password], ( err, res ) => {
     if (err) {
       console.log("Error with DB query");
       throw err;
