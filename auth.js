@@ -9,10 +9,11 @@ var db = require('./database');
 var crypto = require('crypto');
 var session = require('express-session');
 
-passwordhash = (password, res) => {
-  crypto.pbkdf2(Buffer.from(password), 'thet3mp3r3dglass$#ATT3RZwhenUsh00tGUNZthruIT#REPEALtheSECONDamendmentNOW', 100000, 512, 'sha512', (err, key) => {
+passwordhash = (password) => {
+  const pwd = Buffer.from(password);
+  crypto.pbkdf2(pwd, 'thet3mp3r3dglass$#ATT3RZwhenUsh00tGUNZthruIT#REPEALtheSECONDamendmentNOW', 100000, 512, 'sha512', (err, key) => {
     if (err) throw err;
-    res = key;
+    return key;
   });
   // password, salt, iterations, keylen, digest, callback (not used here)
 };
@@ -23,8 +24,7 @@ auth.login = (username, password) => {
   // if not found, return false
   var count = 0;
   // COUNT(*) vs *
-  var pwhres;
-  passwordhash(password, pwhres);
+  var pwhres = passwordhash(password);
   var query = db.query('SELECT * FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', ['username'], pwhres );
   query.on('row', (row, res) => {
     count++;
@@ -62,7 +62,7 @@ auth.signup = (username, password, email) => {
   // make a JSON object to pass into database
   //var jsonobj = JSON.parse('{"username":"' + username + '", "password":"' + passwordhash(password) + '", "email":"' + email + '"}');
   var pwhres;
-  passwordhash(password,pwhres);
+  pwhres = passwordhash(password);
   var jsonobj = {
     "username": username,
     "password": pwhres,
