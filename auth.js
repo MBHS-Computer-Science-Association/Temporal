@@ -23,28 +23,39 @@ auth.login = (username, password) => {
   // if found, return true
   // if not found, return false
   var count = 0;
+  var rows = [];
   // COUNT(*) vs *
   // var pwhres = passwordhash(password);
-  var query = db.query('SELECT * FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', ['username'], ['password'] );
-  query.on('row', (row, res) => {
+  db.query('SELECT * FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', [username], [password], ( err, res ) => {
+    if (err) throw err;
     count++;
-    console.log(res.rows[0]);
-  });
-  query.on('end', (res) => {
-    if ( count !== 1 ) {
-      // doesn't exist
-      console.log("Count not 1: " + count);
+    rows.unshift(row.data);
+    db.end((err) => {
+      if (err) throw err;
       return false;
-    }
-    console.log("Count is one, successfully authenticated.");
-    return true;
+    });
+    console.log("COUNT" + count);
   });
+  return true;
+  // query.on('row', (row, res) => {
+  //   count++;
+  //   console.log(res.rows[0]);
+  // });
+  // query.on('end', (res) => {
+  //   if ( count !== 1 ) {
+  //     // doesn't exist
+  //     console.log("Count not 1: " + count);
+  //     return false;
+  //   }
+  //   console.log("Count is one, successfully authenticated.");
+  //   return true;
+  // });
 };
 
 auth.signup = (username, password, email) => {
   // ensure username is unique
   var count = 0;
-  var query = db.query('SELECT * FROM users WHERE data->>\'username\' = ($1);', ['username']);
+  var query = db.query('SELECT * FROM users WHERE data->>\'username\' = ($1);', [username]);
   query.on('row', (row, res) => {
     count++;
     console.log(res.rows[0]);
