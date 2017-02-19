@@ -1,6 +1,6 @@
 var socket = io();
 
-
+socket.emit('quiz', true);
 socket.on('data', (data) => {
   console.log(data);
   document.getElementById('label1').innerHTML = data[0][0] + ' is related to ' + data[0][1] + ' because ' + data[0][2];
@@ -17,7 +17,7 @@ $('.button').click(function(){
   });
   if(isCorrect){
   document.getElementById('correctness').innerHTML = 'True';
-}else {
+  }else {
   document.getElementById('correctness').innerHTML = 'False';
 }
 });
