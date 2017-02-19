@@ -49,7 +49,9 @@
             var $el = $(this);
 
             var $input = $('<input/>').val( $el.text() );
-            $el.replaceWith( $input );
+            var $span = $('<span/>').val( $input.text() );
+            $span.append('<i class=\'checkmark icon\'></i>')
+            $el.replaceWith( $span );
 
             var save = function(){
               var $p = $('<p data-editable />').text( $input.val() );
