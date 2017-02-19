@@ -8,7 +8,11 @@
   },
   "dependencies": {
     "express": "^4.14.0",
+<<<<<<< HEAD
     "python-shell": "^0.4.0"
+=======
+    "seraph": "^0.15.2"
+>>>>>>> master
   },
   "devDependencies" : {
     "chai": "*",
