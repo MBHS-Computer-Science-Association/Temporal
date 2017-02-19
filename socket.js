@@ -29,15 +29,15 @@ var exports = module.exports = function(server) {
           list = param;
         });
         var related;
-        for(var i = 0; i < totalNodes; i++){
-          if(list[i].id == totalNodes){
-            rdb.getRelatedNodes(i, (info)=>{
-              related = info;
-            });//RANDOMIZE WHICH RELATE
-            data = [[list[i].name],[related[0]],[]];
-        }
+        // for(var i = 0; i < totalNodes; i++){
+        //   if(list[i].id == totalNodes){
+        //     rdb.getRelatedNodes(i, (info)=>{
+        //       related = info;
+        //     });//RANDOMIZE WHICH RELATE
+        //     data = [[list[i].name],[related[0]],[]];
+        // }
         data = [["Russian Revolution"],["Vietnam War"],["both are wars"], ["Thai", "Trevor", "both are the same person"],["Renaissance","Scientific Revolution","both changed the world"],["Donald Trump", "Vladimir Putin", "both are working for Russia"]];
-
+        console.log(data);
       socket.emit('data', data);
 
         while(!nextQuestion){
