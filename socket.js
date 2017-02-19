@@ -6,6 +6,10 @@ var exports = module.exports = function(server) {
     socket.on('disconnect', () => {
       console.log("User disconnected.");
     });
+
+    socket.on('answer', (ans)=>{
+      console.log(ans);
+    });
   });
   var obj = {};
   return obj;
