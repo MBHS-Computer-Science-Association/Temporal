@@ -62,9 +62,10 @@ rep.getAllNodes = function(callback) {
   nodeId - id of the node to edit
   newTitle - the new title of the node to edit
 */
-rep.nodeEditTitle = function(nodeId, newTitle) {
+rep.nodeEditTitle = function(nodeId, newTitle, callback) {
   db.query("MATCH (n) WHERE id(n) = {id} SET n.title = {title}", {id: nodeId, title: newTitle}, function(err, result) {
     if (err) throw err;
+    if (callback) callback();
   });
 };
 
@@ -72,9 +73,10 @@ rep.nodeEditTitle = function(nodeId, newTitle) {
   nodeId - id of the node to edit
   newDesc - the new description of the node to edit
 */
-rep.nodeEditDescription = function(nodeId, newDesc) {
+rep.nodeEditDescription = function(nodeId, newDesc, callback) {
   db.query("MATCH (n) WHERE id(n) = {id} SET n.description = {description}", {id: nodeId, title: newDesc}, function(err, result) {
     if (err) throw err;
+    if (callback) callback();
   });
 };
 
@@ -86,9 +88,9 @@ rep.nodeEditDescription = function(nodeId, newDesc) {
   callback - (id)
 */
 rep.createRelationship = function(srcId, destId, newTitle, newDesc, callback) {
-  db.query("MATCH (a), (b) WHERE id(a) = {src} AND id(b) = {dest} CREATE (a)-[r:RELATED_TO {title: {title}, description: {description}}]->(b) RETURN id(r)", {src: srcId, dest: destId, title: newTitle, description: newDesc}, function(err, result) {
+  db.query("MATCH (a), (b) WHERE id(a) = {src} AND id(b) = {dest} CREATE (a)-[r:RELATED_TO {title: {title}, description: {description}}]->(b) RETURN id(r) as id", {src: srcId, dest: destId, title: newTitle, description: newDesc}, function(err, result) {
     if (err) throw err;
-    callback(result[0].id);
+    if (callback) callback(result[0].id);
   });
 };
 
