@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Temporal | Card</title>
+
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+      integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css" integrity="sha256-wT6CFc7EKRuf7uyVfi+MQNHUzojuHN2pSw0YWFt2K5E=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js" integrity="sha256-flVaeawsBV96vCHiLmXn03IRJym7+ZfcLVvUWONCas8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="ui card">
+      <form class="ui form" action="" method=post enctype="multipart/form-data">
+        <div class ="field">
+          <div class="content">
+            <input type = "text" id="enter-term" placeholder="Term">
+          </div>
+      </div>
+      <div class="field">
+        <div class="description">
+          <label>Definition</label>
+          <textarea rows=1></textarea>
+        </div>
+      </div>
+      <div class="field">
+        <div class="extra content">
+            <i class="share alternate icon"></i>
+            Enter relationships:
+            <div id="new-Relationship">
+              <!-- Script for creating a new relationship form -->
+              <script src="addRelationship.js" language="Javascript" type="text/javascript"></script>
+                <div id="dynamicInput">
+                  <br><input type="text" name="myInputs[]" placeholder="Relationship">
+              </div>
+               <input class="fluid ui button" type="button" value="+" onClick="addInput('dynamicInput');">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
