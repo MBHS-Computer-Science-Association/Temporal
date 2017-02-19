@@ -33,7 +33,7 @@ auth.login = (username, password) => {
     var retrows = [];
     retrows.unshift(res.rows);
     console.log("JSON Stringify of retrows[0] " + JSON.stringify(retrows[0]) );
-    console.log("Count var: " + retrows[0].count);
+    console.log("Count var: " + retrows[0][0].count);
     count = retrows[0].count;
     db.end((err) => {
       if (err) {
