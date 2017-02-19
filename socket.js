@@ -6,6 +6,7 @@ var exports = module.exports = function(server) {
 
   io.on('connection', (socket) => {
     console.log("User connected.");
+  });
 
     socket.on('disconnect', () => {
       console.log("User disconnected.");
@@ -62,7 +63,6 @@ var exports = module.exports = function(server) {
     socket.on('answer', (ans) => {
       console.log(ans);
     });
-  }
 
     socket.on('graph', function(graph) {
       socket.emit('graph', graph);
