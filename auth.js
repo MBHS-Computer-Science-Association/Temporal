@@ -26,20 +26,22 @@ auth.login = (username, password) => {
   var rows = [];
   // COUNT(*) vs *
   // var pwhres = passwordhash(password);
-  db.query('SELECT * FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', [username], [password], ( err, res ) => {
+  db.query('SELECT COUNT(*) FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', [username], [password], ( err, res ) => {
     if (err) {
       console.log("Error with DB query");
       throw err;
     }
-    count++;
-    rows.unshift(row.data);
+    count = res.rows[0];
     db.end((err) => {
       if (err) {
         console.log("Error with ending");
         throw err;
-      } else {
+      } else if ( count === 1 ) {
         console.log("COUNT: " + count);
         return true;
+      } else {
+        console.log("COUNT NOT 1: " + count);
+        return false;
       }
     });
   });
