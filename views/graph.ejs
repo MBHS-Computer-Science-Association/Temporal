@@ -40,15 +40,24 @@
           <div class="ui card">
             <div class="content">
               <a class="header"><%= card.title %></a>
+              <% if (edit) { %>
+                <i class="edit icon"></i>
+              <% } %>
             </div>
             <div class="description">
               <%= card.description %>
+              <% if (edit) { %>
+                <i class="edit icon"></i>
+              <% } %>
             </div>
             <div class="extra content">
               <a href="#">
                 <i class="share alternate icon"></i>
                 Relationships
               </a>
+              <% if (edit) { %>
+                <i class="edit icon"></i>
+              <% } %>
             </div>
           </div>
           <% }); %>
