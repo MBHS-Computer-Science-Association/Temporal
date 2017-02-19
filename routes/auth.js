@@ -7,6 +7,7 @@
 var express = require('express');
 var router = express.Router();
 var auth = require('../auth');
+var path = require('path');
 
 router.get('/', (req, res) => {
   var loginSessionExists = false;
@@ -16,7 +17,7 @@ router.get('/', (req, res) => {
 });
 router.get('/login', (req, res) => {
   // initial login stuff
-  res.sendFile( __dirname + '/../public/login.html');
+  res.sendFile(path.resolve('/public/login.html'));
 });
 router.post('/login', (req, res) => {
   // authenticate login
@@ -36,7 +37,7 @@ router.post('/login', (req, res) => {
 });
 router.get('/signup', (req, res) => {
   // create an account
-  res.sendFile( __dirname + '/../public/signup.html');
+  res.sendFile(path.resolve('/public/signup.html'));
 });
 router.post('/signup', (req, res) => {
   auth.signup( req.query.username, req.query.password, req.query.email );
@@ -45,7 +46,7 @@ router.post('/signup', (req, res) => {
 router.get('/logout', (req, res) => {
   // TODO: need to get session
   auth.destroySession( sess );
-  res.sendFile(__dirname + '/../public/logout.html');
+  res.sendFile(path.resolve('/../public/logout.html'));
 });
 
 module.exports = router;
