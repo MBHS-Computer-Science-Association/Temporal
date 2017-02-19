@@ -126,9 +126,9 @@ rep.relationshipEditDescription = function(relId, newDesc, callback) {
 
 // TODO: count nodes
 rep.getNodeCount = function(callback) {
-  db.query("MATCH (n) RETURN count(DISTINCT n)", (err, result) => {
+  db.query("MATCH (n) RETURN count(DISTINCT n) as count", (err, result) => {
     if (err) throw err;
-    if (callback) callback(result);
+    if (callback) callback(result[0].count);
   });
 };
 

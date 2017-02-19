@@ -88,6 +88,7 @@ describe('graphene database', () => {
   describe('getNodeCount', () => {
     it('should return the number of nodes in the database', (done) => {
       graphdb.getNodeCount((count) => {
+        console.log("Node count: " + count);
         assert(typeof count === 'number');
         done();
       });
