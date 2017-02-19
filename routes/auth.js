@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 });
 router.get('/login', (req, res) => {
   // initial login stuff
-  res.render('login.html');
+  res.sendFile('login.html');
 });
 router.post('/login', (req, res) => {
   // authenticate login
@@ -24,21 +24,28 @@ router.post('/login', (req, res) => {
     // Session stored in sess
     // TODO: do something with sess
     sess = auth.createSession(req, res, req.query.username);
-    res.render('login.html');
+
+    /*
+    var params = {
+      success: true
+    };
+
+    res.render('login', params); // TODO: change to render
+    */
   }
 });
 router.get('/signup', (req, res) => {
   // create an account
-  res.render('signup.html');
+  res.sendFile('signup.html');
 });
 router.post('/signup', (req, res) => {
   auth.signup( req.query.username, req.query.password, req.query.email );
-  res.render('signup.html');
+  // res.render('signup.html');
 });
 router.get('/logout', (req, res) => {
   // TODO: need to get session
   auth.destroySession( sess );
-  res.render('logout.html');
+  res.sendFile('logout.html');
 });
 
 module.exports = router;
