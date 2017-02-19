@@ -59,10 +59,6 @@ var exports = module.exports = function(server) {
       totalNodes--;
     }
   }
-    socket.on('answer', (ans) => {
-      console.log(ans);
-    });
-
     socket.on('graph', function(graph) {
       socket.emit('graph', graph);
       console.log('Sending graph.');
