@@ -1,6 +1,6 @@
 var assert = require('chai').assert;
 
-// var graphdb = require('../graphdb');
+var graphdb = require('../graphdb');
 
 describe('graphene database', () => {
   describe('createNode', () => {
