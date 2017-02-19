@@ -41,15 +41,14 @@
             <script src="editable-text.js" language="javascript" type="text/javascript"></script>
           <div class="ui card form">
             <div class="content">
-              <!-- <p class="header" data-editable><%= card.title %></p> -->
-              <p data-editable>Title</p>
+               <p class="header"><%= card.title %></p>
               <% if (edit) { %>
                 <i class="edit icon"></i>
                 <input type = "text" id="enter-term" placeholder="Term">
               <% } %>
             </div>
             <div class="description">
-              <%= card.description %>
+            <p data-editable>  <%= card.description %></p>
               <% if (edit) { %>
                 <i class="edit icon"></i>
                 <textarea rows=2></textarea>
