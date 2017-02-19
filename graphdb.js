@@ -7,10 +7,6 @@ var db = seraph({
   pass: url.auth.split(':')[1]
 });
 
-console.log(process.env.GRAPHENEDB_URL);
-
-console.log("Database is ready.");
-
 var rep = {};
 
 rep.createTestNode = function(callback) {
@@ -83,14 +79,5 @@ rep.relationshipEditTitle = function() {
 rep.relationshipEditDescription = function() {
   throw "not implemented";
 };
-
-
-console.log(rep);
-
-db.query("MATCH (n) RETURN n", (err, result) => {
-  console.log(result);
-});
-
-console.log("The callback never came back.");
 
 module.exports = rep;
