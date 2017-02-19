@@ -15,13 +15,12 @@
   <body>
     <div class="ui bottom attached segment pushable">
      <% include header.ejs%>
-
+     <div id="edit">
+       <button class="ui labeled icon button" onclick="<% edit = true %>;/graph/edit;">
+         <i class="edit icon"></i>
+           Edit
+         </button>
       <div id="menu" class="ui visible inverted left vertical sidebar menu">
-        <div id="edit">
-          <button class="ui labeled icon button" onclick="<% edit = true %>;/graph/edit;">
-            <i class="edit icon"></i>
-              Edit
-            </button>
       </div>
         <div class="ui search" id="graph-search">
           <div class="ui icon input">
