@@ -2,7 +2,7 @@ var assert = require('chai').assert;
 
 // var graphdb = require('../graphdb');
 
-describe.skip('graphene database', () => {
+describe('graphene database', () => {
   describe('createNode', () => {
     it('should create a node', (done) => {
       graphdb.createNode("Ukrainian Uprising", "Ukrainians in Crimea were misbehaving.", (id) => {
