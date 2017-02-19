@@ -71,7 +71,10 @@ auth.signup = (username, password, email) => {
     console.log("Adding to DB");
     // add to database
     db.query('INSERT INTO users(data) VALUES ($1)', [JSON.stringify(jsonobj)], (err, result) => {
-      if (err) throw err;
+      if (err) {
+        console.log("Error");
+        throw err;
+      }
       console.log("Success");
       return true;
     });
