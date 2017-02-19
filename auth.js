@@ -8,15 +8,16 @@ var app = require('express');
 var db = require('./database');
 var crypto = require('crypto');
 var session = require('express-session');
+var bcrypt = require('bcrypt');
 
-passwordhash = (password) => {
-  const pwd = Buffer.from(password);
-  crypto.pbkdf2(pwd, 'thet3mp3r3dglass$#ATT3RZwhenUsh00tGUNZthruIT#REPEALtheSECONDamendmentNOW', 100000, 512, 'sha512', (err, key) => {
-    if (err) throw err;
-    return key;
-  });
-  // password, salt, iterations, keylen, digest, callback (not used here)
-};
+// passwordhash = (password) => {
+//   const pwd = Buffer.from(password);
+//   crypto.pbkdf2(pwd, 'thet3mp3r3dglass$#ATT3RZwhenUsh00tGUNZthruIT#REPEALtheSECONDamendmentNOW', 100000, 512, 'sha512', (err, key) => {
+//     if (err) throw err;
+//     return key;
+//   });
+//   // password, salt, iterations, keylen, digest, callback (not used here)
+// };
 
 auth.login = (username, password) => {
   // search for user/pass combo
@@ -24,8 +25,8 @@ auth.login = (username, password) => {
   // if not found, return false
   var count = 0;
   // COUNT(*) vs *
-  var pwhres = passwordhash(password);
-  var query = db.query('SELECT * FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', ['username'], pwhres );
+  // var pwhres = passwordhash(password);
+  var query = db.query('SELECT * FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', ['username'], password );
   query.on('row', (row, res) => {
     count++;
     console.log(res.rows[0]);
@@ -61,22 +62,23 @@ auth.signup = (username, password, email) => {
 
   // make a JSON object to pass into database
   //var jsonobj = JSON.parse('{"username":"' + username + '", "password":"' + passwordhash(password) + '", "email":"' + email + '"}');
-  var pwhres;
-  pwhres = passwordhash(password);
-  var jsonobj = {
-    "username": username,
-    "password": pwhres,
-    "email": email
-  };
-  console.log("Adding to DB");
-  // add to database
-  db.query('INSERT INTO users(data) VALUES ($1)', JSON.stringify(jsonobj), (err, result) => {
-    if (err) throw err;
-    console.log("Success");
-    return true;
-  });
-  console.log("Failure");
-  return false;
+  // bcrypt.hash(password, null, null, function(err, hash) {
+    // Store hash in password DB.
+    var jsonobj = {
+      "username": username,
+      "password": password,
+      "email": email
+    };
+    console.log("Adding to DB");
+    // add to database
+    db.query('INSERT INTO users(data) VALUES ($1)', JSON.stringify(jsonobj), (err, result) => {
+      if (err) throw err;
+      console.log("Success");
+      return true;
+    });
+    console.log("Failure");
+    return false;
+  // });
 };
 
 auth.createSession = (req, res, username) => {
