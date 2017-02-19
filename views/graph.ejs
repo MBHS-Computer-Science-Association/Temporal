@@ -183,8 +183,12 @@
 
 
       function createNode(node_title, node_description) {
-        socket.emit({title: node_title, description: node_description});
-      }
+        socket.emit('create_node', {title: node_title, description: node_description});
+      };
+
+      function createRelationship(srcId, destId, rel_title, rel_description) {
+        socket.emit('create_rel', {src: srcId, dest: destId, title: rel_title, description: rel_description});
+      };
     </script>
   </body>
 </html>
