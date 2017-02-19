@@ -9,21 +9,13 @@ var db = seraph({
 
 var rep = {};
 
-rep.createTestNode = function(callback) {
-  db.query("CREATE (n) RETURN id(n)", (err, result) => {
-    if (err) throw err;
-    console.log(result);
-    callback(result);
-  });
-};
-
 /**
   newTitle - title of the node to create
   newDesc - description of the node to create
   callback - (id)
 */
 rep.createNode = function(newTitle, newDesc, callback) {
-  db.query("CREATE (n {title: {title}, description: {description}}) RETURN id(n)", {title: newTitle, description: newDesc}, function(err, result) {
+  db.query("CREATE (n {title: {title}, description: {description}}) RETURN id(n) as id", {title: newTitle, description: newDesc}, function(err, result) {
     if (err) throw err;
     callback(result[0].id);
   });
