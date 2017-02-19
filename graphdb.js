@@ -74,7 +74,7 @@ rep.nodeEditTitle = function(nodeId, newTitle, callback) {
   newDesc - the new description of the node to edit
 */
 rep.nodeEditDescription = function(nodeId, newDesc, callback) {
-  db.query("MATCH (n) WHERE id(n) = {id} SET n.description = {description}", {id: nodeId, title: newDesc}, function(err, result) {
+  db.query("MATCH (n) WHERE id(n) = {id} SET n.description = {description}", {id: nodeId, description: newDesc}, function(err, result) {
     if (err) throw err;
     if (callback) callback();
   });
@@ -94,12 +94,32 @@ rep.createRelationship = function(srcId, destId, newTitle, newDesc, callback) {
   });
 };
 
-rep.relationshipEditTitle = function() {
-  throw "not implemented";
+/**
+  relId - the id of the relationship to edit
+  newTitle - the new title of the relationship
+  callback - ()
+*/
+rep.relationshipEditTitle = function(relId, newTitle, callback) {
+  db.query("MATCH ()-[r]->() WHERE id(r) = {id} SET r.title = {title}", {id: relId, title: newTitle}, (err, result) => {
+    if (err) throw err;
+    if (callback) callback();
+  });
 };
 
-rep.relationshipEditDescription = function() {
-  throw "not implemented";
+/**
+  relId - the id of the relationship to edit
+  newTitle - the new description of the relationship
+  callback - ()
+*/
+rep.relationshipEditDescription = function(relId, newDesc, callback) {
+  db.query("MATCH ()-[r]->() WHERE id(r) = {id} SET r.description = {description}", {id: relId, description: newDesc}, (err, result) => {
+    if (err) throw err;
+    if (callback) callback();
+  });
 };
+
+// TODO: delete relationship by id
+// TODO: get relationship by id
+// TODO: get all relationships
 
 module.exports = rep;
