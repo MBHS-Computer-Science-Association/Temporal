@@ -83,9 +83,9 @@ describe.skip('graphene database', () => {
     });
   });
 
-  describe('getRelationshipFromId');
+  describe.skip('getRelationshipFromId');
 
-  describe('getRelationshipFromNodes');
+  describe.skip('getRelationshipFromNodes');
 
   describe('getNodeCount', () => {
     it('should return the number of nodes in the database', (done) => {
@@ -98,7 +98,7 @@ describe.skip('graphene database', () => {
   });
 
 
-  describe('searchNodes');
+  describe.skip('searchNodes');
 
   describe('getRelatedNodes', () => {
     it('should return all nodes directly related to the node', (done) => {
