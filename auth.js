@@ -8,7 +8,6 @@ var app = require('express');
 var db = require('./database');
 var crypto = require('crypto');
 var session = require('express-session');
-var bcrypt = require('bcrypt');
 
 // passwordhash = (password) => {
 //   const pwd = Buffer.from(password);
