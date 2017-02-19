@@ -43,7 +43,7 @@ router.get('/signup', (req, res) => {
   res.sendFile(path.resolve(__dirname + '/../public/signup.html'));
 });
 router.post('/signup', (req, res) => {
-  res.send(auth.signup(req.query.username, req.query.password, req.query.email));
+  res.send(req.query.username + " " + auth.signup(req.query.username, req.query.password, req.query.email));
   // if ( auth.signup( req.query.username, req.query.password, req.query.email ) ) {
   //   res.send("Creation failure not detected or success");
   // } else {
