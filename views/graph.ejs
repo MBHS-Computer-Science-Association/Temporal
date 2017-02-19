@@ -8,14 +8,22 @@
       src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
       integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
       crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css" integrity="sha256-wT6CFc7EKRuf7uyVfi+MQNHUzojuHN2pSw0YWFt2K5E=" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js" integrity="sha256-flVaeawsBV96vCHiLmXn03IRJym7+ZfcLVvUWONCas8=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
   </head>
   <body>
     <div class="ui bottom attached segment pushable">
-     <% include header.ejs%>
-
+     <% include header.ejs %>
+     <!-- <script src="editCard.js" language="Javascript" type="text/javascript"></script> -->
+     <div id="edit">
+       <!-- Trying to handle editing on a separate url for simplicity -->
+        <a href="edit/" class="ui labeled icon button">
+         <i class="edit icon"></i>
+         Edit
+        </a>
+      </div>
       <div id="menu" class="ui visible inverted left vertical sidebar menu">
         <div class="ui search" id="graph-search">
           <div class="ui icon input">
@@ -26,6 +34,65 @@
             <!--write a reactive search.js file and implement it here (an array of objects each with a title and description)-->
           </div>
         </div>
+
+        <script type="text/javascript">
+          $('body').on('click', '[data-editable]', function(){
+
+            var $el = $(this);
+
+            var $input = $('<input/>').val( $el.text() );
+            $el.replaceWith( $input );
+
+            var save = function(){
+              var $p = $('<p data-editable />').text( $input.val() );
+              $input.replaceWith( $p );
+            };
+
+            $input.one('blur', save).focus();
+
+          });
+        </script>
+        <div id="plotted-cards">
+          <% cards.forEach((card) => { %>
+          <div class="ui card form">
+            <div class="content">
+              <% if(!edit){ %>
+               <p class="header"><%= card.title %></p>
+              <% }else{ %>
+                <i class="edit icon"></i>
+                <p class="header" data-editable /><%= card.title %></p>
+              <% } %>
+            </div>
+            <div class="description">
+              <% if(!edit) {%>
+                <p><%= card.description %></p>
+              <% }else{ %>
+                <i class="edit icon"></i>
+                <p data-editable /><%= card.description %></p>
+              <% } %>
+            </div>
+            <div class="extra content">
+              <a href="#">
+                <i class="share alternate icon"></i>
+                Relationships
+              </a>
+              <% if (edit) { %>
+                <i class="edit icon"></i>
+
+                <div id="new-Relationship">
+                  <!-- Script for creating a new relationship form -->
+                  <script src="addRelationship.js" language="Javascript" type="text/javascript"></script>
+                    <div id="dynamicInput">
+                      <br><input type="text" name="myInputs[]" placeholder=Relationship>
+                  </div>
+                   <input class="fluid ui button" type="button" value="+" onClick="addInput('dynamicInput');">
+                </div>
+              <% } %>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+
         <% if(edit){ %>
           <div id="edit cards">
             <div class="ui card">
@@ -59,37 +126,55 @@
             </div>
           </div>
         <%}else{%>
-          <div id="plotted-cards">
-            <div class="ui card">
-            <div class="content">
-              <a class="header"><%= term %></a>
-            </div>
-            <div class="description">
-              <%= definition %>
-            </div>
-            <div class="extra content">
-              <a href="#">
-                <i class="share alternate icon"></i>
-                Relationships
-              </a>
-            </div>
-          </div>
-        </div>
-      <% } %>
-      <!-- Loop through the cards, displaying them here () -->
+        <% } %>
       </div>
-      <div id="edit">
-        <button class="ui labeled icon button">
-          <i class="edit icon"></i>
-            Edit
-          </button>
-    </div>
+
       <div class="pusher">
         <div id="graph" class="ui basic segment">
           <h3 class="ui header">Application Content</h3>
             Graph
+            <!-- Sigma div (graph) goes here -->
+            <div id="container" style="
+              width: 100em;
+              height: 100em;
+            ">
+            </div>
         </div>
       </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.slim.min.js" integrity="sha256-1R5guYd/H+WEatv0fPVrVqIvu/4ntv7G0Fa5ooY+24g=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.0/sigma.min.js" integrity="sha256-SRRubnX77KKxTl1/uluP1zGweVqx3pTO7aEaTecZB4g=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.0/plugins/sigma.layout.forceAtlas2.min.js" integrity="sha256-4db1UeOZltwcQuCk6NSC5DejShYyjcWolY5OyQLtAvg=" crossorigin="anonymous"></script>
+    <script>
+      var socket = io();
+
+      var s = new sigma({
+        container: 'container'
+      });
+
+      socket.emit('request_final_graph', function(data) {
+        socket.emit('graph', data);
+      });
+
+      socket.on("update", function() {
+        socket.emit('request_final_graph', function(data) {
+          socket.emit('graph', data);
+        });
+      });
+
+      socket.on("graph", function(graph) {
+        if (s.isForceAtlas2Running()) {
+          s.killForceAtlas2();
+        }
+        s.graph.clear();
+        s.graph.read(graph);
+        s.refresh();
+        s.startForceAtlas2();
+        setTimeout(function() {
+          s.killForceAtlas2();
+        }, 1000);
+      });
+    </script>
   </body>
 </html>

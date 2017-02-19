@@ -9,10 +9,73 @@
       crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css" integrity="sha256-wT6CFc7EKRuf7uyVfi+MQNHUzojuHN2pSw0YWFt2K5E=" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js" integrity="sha256-flVaeawsBV96vCHiLmXn03IRJym7+ZfcLVvUWONCas8=" crossorigin="anonymous"></script>
-    <% include menu.ejs %>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Testing</h1>
+    <div class="ui bottom attached segment pushable">
+      <% include header.ejs %>
+      <div id="edit">
+        <!-- Trying to handle editing on a separate url for simplicity -->
+         <a href="edit/" class="ui labeled icon button">
+          <i class="edit icon"></i>
+          Edit
+         </a>
+       </div>
+      <div id="menu" class="ui visible inverted left vertical sidebar menu">
+        <a class="item" href="/index.html">
+          <i class="home icon"></i>
+          Home
+        </a>
+        <a class="item" href="#">
+          <i class="idea icon"></i>
+          Sets
+        </a>
+        <a class="item">
+          <i class="user icon"></i>
+          Account
+        </a>
+      </div>
+      <!-- <script src=editable-text.js language="javascript" type="text/javascript"></script> -->
+      <script type="text/javascript">
+        $('body').on('click', '[data-editable]', function(){
+
+          var $el = $(this);
+
+          var $input = $('<input/>').val( $el.text() );
+          $el.replaceWith( $input );
+
+          var save = function(){
+            var $p = $('<p data-editable />').text( $input.val() );
+            $input.replaceWith( $p );
+          };
+
+          $input.one('blur', save).focus();
+
+        });
+      </script>
+      <div class="pusher">
+        <div class="ui basic segment">
+          <h3 class="ui header">Application Content</h3>
+          <% sets.forEach((set) => { %>
+              <div class="ui segment">
+                <div class="ui sub header">
+                  <% if(!edit){%>
+                    <a href="<%= set.id %>"><%= set.title %></a>
+                    <% }else{ %>
+                       <p class="header" data-editable><%= set.title %></p>
+                    <% } %>
+                </div>
+                <% if(!edit){%>
+                  <p>
+                <%= set.description %>
+              </p>
+              <% }else{ %>
+                  <p data-editable /><%= set.description %></p>
+                <% } %>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
