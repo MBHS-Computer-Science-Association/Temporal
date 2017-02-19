@@ -41,9 +41,8 @@
             <script src="editable-text.js" language="javascript" type="text/javascript"></script>
           <div class="ui card form">
             <div class="content">
-              <% if(!edit) {%>
                <p class="header" data-editable><%= card.title %></p>
-              <% }else{ %>
+              <% if(edit){ %>
                 <p class="header"><%= card.title %></p>
                 <i class="edit icon"></i>
                 <input type = "text" id="enter-term" placeholder="Term">
