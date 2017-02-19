@@ -10,7 +10,7 @@ var crypto = require('crypto');
 var session = require('express-session');
 
 passwordhash = (password, res) => {
-  crypto.pbkdf2(password, 'thet3mp3r3dglass$#ATT3RZwhenUsh00tGUNZthruIT#REPEALtheSECONDamendmentNOW', 100000, 512, 'sha512', (err, key) => {
+  crypto.pbkdf2(new Buffer(password), 'thet3mp3r3dglass$#ATT3RZwhenUsh00tGUNZthruIT#REPEALtheSECONDamendmentNOW', 100000, 512, 'sha512', (err, key) => {
     if (err) throw err;
     res = key;
   });
