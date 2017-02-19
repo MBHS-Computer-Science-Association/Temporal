@@ -25,11 +25,14 @@ router.get('/graph', (req,res) => {
     definition: "definition",
     term: "term"
   });
+<<<<<<< HEAD
 });
 
 router.get('/quiz', (req, res) => {
   res.render('quiz');
 
+=======
+>>>>>>> master
 });
 
 module.exports = router;
