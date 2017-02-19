@@ -7,7 +7,10 @@
     "test": "mocha"
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "seraph": "^0.15.2",
+    "socket.io": "^1.7.3",
+    "python-shell": "^0.4.0"
   },
   "devDependencies" : {
     "chai": "*",
