@@ -85,7 +85,7 @@ auth.signup = (username, password, email) => {
   //var jsonobj = JSON.parse('{"username":"' + username + '", "password":"' + passwordhash(password) + '", "email":"' + email + '"}');
   // bcrypt.hash(password, null, null, function(err, hash) {
     // Store hash in password DB.
-    var jsonobj = JSON.parse('{ "username": ' + username + ', "password": ' + password + ', "email": ' + email + ' }');
+    var jsonobj = JSON.parse('{ "username": "' + username + '", "password": "' + password + '", "email": "' + email + '" }');
     console.log("Adding to DB");
     console.log("jsonobj: " + JSON.stringify(jsonobj));
     // add to database
