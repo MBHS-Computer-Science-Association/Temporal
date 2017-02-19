@@ -37,7 +37,7 @@
 
         <div id="plotted-cards">
           <% cards.forEach((card) => { %>
-          <div class="ui card">
+          <div class="ui card form">
             <div class="content">
               <a class="header"><%= card.title %></a>
               <% if (edit) { %>
@@ -59,7 +59,6 @@
               </a>
               <% if (edit) { %>
                 <i class="edit icon"></i>
-
 
                 <div id="new-Relationship">
                   <!-- Script for creating a new relationship form -->
