@@ -33,12 +33,9 @@ var exports = module.exports = function(server) {
           }
         if(isCorrect){
             socket.emit('nextQ', true);
-        }else{
+        }else if(!isCorrect){
            socket.emit('nextQ', false);
         }
-
-      totalNodes--;
-
 
     socket.on('graph', function(graph) {
       socket.emit('graph', graph);

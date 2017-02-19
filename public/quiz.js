@@ -1,4 +1,5 @@
 var socket = io();
+var isCorrect = false;
 
 socket.emit('quiz', true);
 socket.on('data', (data) => {
@@ -8,9 +9,11 @@ socket.on('data', (data) => {
   document.getElementById('label3').innerHTML = data[2][0] + ' is related to ' + data[2][1] + ' because ' + data[2][2];
   document.getElementById('label4').innerHTML = data[3][0] + ' is related to ' + data[3][1] + ' because ' + data[3][2];
 });
+socket.on('nextQ', (bool) => {
+  isCorrect = bool;
+});
 
 $('.button').click(function(){
-  var isCorrect = false;
   socket.emit('answer', $('input:radio[name=quiz]:checked').val());
   socket.on('nextQ', (bool) => {
     isCorrect = bool;
