@@ -26,7 +26,12 @@ rep.createNode = function(newTitle, newDesc, callback) {
   callback - ()
 */
 rep.deleteNode = function(nodeId, callback) {
-  db.query("MATCH (n) WHERE id(n) = {id} DELETE n", {id: nodeId}, function(err, result) {
+  var batch = db.batch();
+
+  batch.queryRaw("MATCH (n)-[r]-() WHERE id(n) = {id} DELETE r", {id: nodeId});
+  batch.queryRaw("MATCH (n) WHERE id(n) = {id} DELETE n", {id: nodeId});
+
+  batch.commit((err, result) => {
     if (err) throw err;
     if (callback) callback();
   });
