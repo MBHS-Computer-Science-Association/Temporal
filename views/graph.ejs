@@ -16,13 +16,12 @@
     <div class="ui bottom attached segment pushable">
      <% include header.ejs%>
      <div id="edit">
-       <button class="ui labeled icon button" onclick="<% edit = false %>;/graph/edit;">
+       <button class="ui labeled icon button" onclick="<% edit = true %>;/graph/edit;">
          <i class="edit icon"></i>
            Edit
          </button>
        </div>
       <div id="menu" class="ui visible inverted left vertical sidebar menu">
-      </div>
         <div class="ui search" id="graph-search">
           <div class="ui icon input">
             <input class="prompt" type="text" placeholder="Search graph...">
@@ -92,5 +91,6 @@
             <!-- Sigma div (graph) goes here -->
         </div>
       </div>
+    </div>
   </body>
 </html>
