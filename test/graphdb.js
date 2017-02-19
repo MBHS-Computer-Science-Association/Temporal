@@ -11,4 +11,13 @@ describe('graphene database', () => {
       });
     });
   });
+
+  describe('createTestNode', () => {
+    it('should create a node', () => {
+      graphdb.createTestNode((id) => {
+        console.log("The new node id: " + id);
+        assert(typeof id === 'number');
+      });
+    });
+  });
 });
