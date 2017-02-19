@@ -23,11 +23,4 @@ var server = app.listen(app.get('port'), function() {
   console.log('Node server started on port ' + app.get('port'));
 });
 
-var io = require('socket.io')(server);
-io.on('connection', (socket) => {
-  console.log("User connected.");
-
-  socket.on('disconnect', () => {
-    console.log("User disconnected.");
-  });
-});
+var io = require('./socket')(server);
