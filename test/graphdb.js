@@ -32,8 +32,6 @@ describe('graphene database', () => {
   describe('getAllNodes', () => {
     it('should get all nodes', (done) => {
       graphdb.getAllNodes((nodes) => {
-        console.log(nodes);
-        console.log(nodes[0]);
         done();
       });
     });
@@ -80,6 +78,32 @@ describe('graphene database', () => {
     it('should change the description', (done) => {
       graphdb.relationshipEditDescription(1, "This was a result of the lack of provisions.", () => {
         // assert that the description is changed
+        done();
+      });
+    });
+  });
+
+  describe.skip('getRelationshipFromId');
+
+  describe.skip('getRelationshipFromNodes');
+
+  describe('getNodeCount', () => {
+    it('should return the number of nodes in the database', (done) => {
+      graphdb.getNodeCount((count) => {
+        console.log("Node count: " + count);
+        assert(typeof count === 'number');
+        done();
+      });
+    });
+  });
+
+
+  describe.skip('searchNodes');
+
+  describe('getRelatedNodes', () => {
+    it('should return all nodes directly related to the node', (done) => {
+      graphdb.getRelatedNodes(1, () => {
+        // assert that it actually got only the related nodes
         done();
       });
     });
