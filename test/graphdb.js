@@ -57,8 +57,9 @@ describe('graphene database', () => {
 
   describe('createRelationship', () => {
     it('should create a new relationship with title and description', (done) => {
-      graphdb.createRelationship(2, 3, "Caused", "out of spite", () => {
-        // assert that the relationship is created
+      graphdb.createRelationship(2, 3, "Caused", "out of spite", (id) => {
+        console.log("The new relationship id: " + id);
+        assert(typeof id === 'number');
         done();
       });
     });
