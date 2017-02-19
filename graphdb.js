@@ -118,4 +118,8 @@ rep.relationshipEditDescription = function(relId, newDesc, callback) {
   });
 };
 
+// TODO: delete relationship by id
+// TODO: get relationship by id
+// TODO: get all relationships
+
 module.exports = rep;
