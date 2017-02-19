@@ -28,7 +28,8 @@ auth.login = (username, password) => {
 
 auth.signup = (username, password, email) => {
   // ensure username is unique
-  var uniqueCheck = db.query('SELECT COUNT(*) FROM users WHERE username->>($1), row_number() OVER as rnum FROM users;', username );
+  var uniqueCheck = db.query('SELECT COUNT(*) FROM users WHERE username->>($1);', username );
+  // SQL: , row_number() OVER as rnum FROM users
   //var uniqueCheck = JSON.parse(uniqueCheckQuery);
   if ( uniqueCheck !== 0 ) {
     // user already exists
