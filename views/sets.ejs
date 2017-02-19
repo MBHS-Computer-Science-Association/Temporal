@@ -13,7 +13,13 @@
   </head>
   <body>
     <div class="ui bottom attached segment pushable">
-       <% include header.ejs %>
+      <div id="edit">
+        <!-- Trying to handle editing on a separate url for simplicity -->
+         <a href="edit/" class="ui labeled icon button">
+          <i class="edit icon"></i>
+          Edit
+         </a>
+       </div>
       <div id="menu" class="ui visible inverted left vertical sidebar menu">
         <a class="item" href="/index.html">
           <i class="home icon"></i>
