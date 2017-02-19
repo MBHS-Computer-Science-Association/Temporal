@@ -54,27 +54,22 @@ var mock_cards = [
 router.get('/graph', (req,res) => {
   res.render('graph', {
     edit: false,
-    // resp: res,
-    cards: mock_cards,
-    // definition: "definition",
-    // term: "term"
+    cards: mock_cards
   });
 });
 
 router.get('/graph/edit', (req,res) => {
   res.render('graph', {
     edit: true,
-    mock_cards,
-    // definition: "definition",
-    // term: "term"
+    mock_cards
   });
 });
 
 router.get('/graph/real', (req,res) => {
-  graphdb.getAllNodes((cards) => {
+  graphdb.getAllNodes((response) => {
     res.render('graph', {
       edit: true,
-      cards
+      cards: response
     });
   });
 });
