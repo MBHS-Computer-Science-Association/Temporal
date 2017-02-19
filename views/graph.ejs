@@ -25,6 +25,7 @@
         </a>
       </div>
       <div id="menu" class="ui visible inverted left vertical sidebar menu">
+
         <div class="ui search" id="graph-search">
           <div class="ui icon input">
             <input class="prompt" type="text" placeholder="Search graph...">
@@ -34,6 +35,12 @@
             <!--write a reactive search.js file and implement it here (an array of objects each with a title and description)-->
           </div>
         </div>
+        <% if(edit) {%>
+          <div id="add-card">
+          <a href=''>
+            <i class="add square icon"></i>
+          </a>
+          <% } %>
 
         <script type="text/javascript">
           $('body').on('click', '[data-editable]', function(){
@@ -59,6 +66,9 @@
               <% if(!edit){ %>
                <p class="header"><%= card.title %></p>
               <% }else{ %>
+                <a href=''>
+                  <i id="add-card" class="add square icon"></i>
+                </a>
                 <i class="edit icon"></i>
                 <p class="header" data-editable /><%= card.title %></p>
               <% } %>
@@ -175,6 +185,11 @@
           s.killForceAtlas2();
         }, 1000);
       });
+
+
+      function createNode(node_title, node_description) {
+        socket.emit({title: node_title, description: node_description});
+      }
     </script>
   </body>
 </html>
