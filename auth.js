@@ -37,10 +37,14 @@ auth.signup = (username, password, email) => {
   // ensure email is valid
 
   // make a JSON object to pass into database
-  var jsonobj = JSON.parse('{"username":"' + username + '", "password":"' + passwordhash(password) + '", "email":"' + email + '"}');
-
+  //var jsonobj = JSON.parse('{"username":"' + username + '", "password":"' + passwordhash(password) + '", "email":"' + email + '"}');
+  var jsonobj = {
+    "username": username,
+    "password": passwordhash(password),
+    "email": email
+  };
   // add to database
-  db.query('INSERT INTO users(id,data) VALUES ($1)', jsonobj);
+  db.query('INSERT INTO users(data) VALUES ($1)', JSON.stringify(jsonobj));
 };
 
 auth.createSession = (req, res, username) => {
