@@ -18,18 +18,27 @@ auth.login = (username, password) => {
   // search for user/pass combo
   // if found, return true
   // if not found, return false
-  var userFound = db.query('SELECT COUNT(*) FROM users WHERE username->>($1) AND password->>($2);', ['username'], passwordhash(password) );
-  if ( userFound !== 1 ) {
-    // user already exists
-    return false; // error
-  }
-  return true;
+  var count = 0;
+  var query = db.query('SELECT COUNT(*) FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', ['username'], passwordhash(password) );
+  query.on('row', (row, res) => {
+    count++;
+    console.log(res.rows[0]);
+  });
+  query.on('end', (res) => {
+    if ( count !== 1 ) {
+      // doesn't exist
+      console.log("Count not 1: " + count);
+      return false;
+    }
+    console.log("Count is one, successfully authenticated.");
+    return true;
+  });
 };
 
 auth.signup = (username, password, email) => {
   // ensure username is unique
   var count = 0;
-  var query = db.query('SELECT COUNT(*) FROM users WHERE data->>username = ($1);', ['username']);
+  var query = db.query('SELECT COUNT(*) FROM users WHERE data->>\'username\' = ($1);', ['username']);
   query.on('row', (row, res) => {
     count++;
     console.log(res.rows[0]);
