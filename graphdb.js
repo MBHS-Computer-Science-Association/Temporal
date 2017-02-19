@@ -7,6 +7,8 @@ var db = seraph({
   pass: url.auth.split(':')[1]
 });
 
+console.log(process.env.GRAPHENEDB_URL);
+
 console.log("Database is ready.");
 
 var rep = {};
