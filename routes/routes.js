@@ -14,15 +14,18 @@ router.get('/sets', (req, res) => {
   var mock_sets = {sets: [
     {
       title: "AP Biology Part I",
-      description: "Life! There is nothing better than life."
+      description: "Life! There is nothing better than life.",
+      id: 2341098
     },
     {
       title: "AP Chemistry Ions",
-      description: "I'm reacting to this."
+      description: "I'm reacting to this.",
+      id: 2122348
     },
     {
       title: "AP Calculus BC Derivatives",
-      description: "Taking the derivative sucks."
+      description: "Taking the derivative sucks.",
+      id: 2342301
     }
   ]};
 
