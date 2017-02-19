@@ -14,7 +14,7 @@
     "ejs": "~2.5.2",
     "pg": "^6.1.2",
     "crypto": "^0.0.3",
-    "express-session": "^1.15.1",
+    "express-session": "^1.15.1"
   },
   "devDependencies" : {
     "chai": "*",
