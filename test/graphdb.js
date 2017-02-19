@@ -38,11 +38,21 @@ describe('graphene database', () => {
   });
 
   describe('nodeEditTitle', () => {
-    it('should change the title');
+    it('should change the title', (done) => {
+      graphdb.nodeEditTitle(2, "China", () => {
+        // assert that the title is changed
+        done();
+      });
+    });
   });
 
   describe('nodeEditDescription', () => {
-    it('should change the description');
+    it('should change the description', (done) => {
+      graphdb.nodeEditDescription(2, "This is a dangerous country.", () => {
+        // assert that the description is changed
+        done();
+      });
+    });
   });
 
   describe('createRelationship', () => {
