@@ -86,4 +86,9 @@ rep.relationshipEditDescription = function() {
 
 console.log(rep);
 
+graphdb.createTestNode((id) => {
+  console.log("The new node id: " + id);
+  assert(typeof id === 'number');
+});
+
 module.exports = rep;
