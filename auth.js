@@ -18,7 +18,7 @@ auth.login = (username, password) => {
   // search for user/pass combo
   // if found, return true
   // if not found, return false
-  var userFound = db.query('SELECT COUNT(*) FROM users WHERE username->>($1) AND password->>($2);', username, passwordhash(password) );
+  var userFound = db.query('SELECT COUNT(*) FROM users WHERE username->>($1) AND password->>($2);', ['username'], passwordhash(password) );
   if ( userFound !== 1 ) {
     // user already exists
     return false; // error
@@ -28,13 +28,19 @@ auth.login = (username, password) => {
 
 auth.signup = (username, password, email) => {
   // ensure username is unique
-  var uniqueCheck = db.query('SELECT COUNT(*) FROM users WHERE username->>($1);', username );
+  var count = 0;
+  var query = db.query('SELECT COUNT(*) FROM users WHERE username->>($1);', ['username']);
+  query.on('row', (row, res) => {
+    count++;
+    console.log(res.rows[0]);
+  });
+  query.on('end', (res) => {
+    if ( count > 0 ) {
+      return false;
+    }
+  });
   // SQL: , row_number() OVER as rnum FROM users
   //var uniqueCheck = JSON.parse(uniqueCheckQuery);
-  if ( uniqueCheck !== 0 ) {
-    // user already exists
-    return uniqueCheck; // error
-  }
   // otherwise, proceed
   // ensure email is valid
 
@@ -45,9 +51,15 @@ auth.signup = (username, password, email) => {
     "password": passwordhash(password),
     "email": email
   };
+  console.log("Adding to DB");
   // add to database
-  db.query('INSERT INTO users(data) VALUES ($1)', JSON.stringify(jsonobj));
-  return true;
+  db.query('INSERT INTO users(data) VALUES ($1)', JSON.stringify(jsonobj), (err, result) => {
+    if (err) throw err;
+    console.log("Success");
+    return true;
+  });
+  console.log("Failure");
+  return false;
 };
 
 auth.createSession = (req, res, username) => {
