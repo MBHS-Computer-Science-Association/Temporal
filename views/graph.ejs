@@ -118,8 +118,44 @@
           <h3 class="ui header">Application Content</h3>
             Graph
             <!-- Sigma div (graph) goes here -->
+            <div id="container">
+            </div>
         </div>
       </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.slim.min.js" integrity="sha256-1R5guYd/H+WEatv0fPVrVqIvu/4ntv7G0Fa5ooY+24g=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.0/sigma.min.js" integrity="sha256-SRRubnX77KKxTl1/uluP1zGweVqx3pTO7aEaTecZB4g=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.0/plugins/sigma.layout.forceAtlas2.min.js" integrity="sha256-4db1UeOZltwcQuCk6NSC5DejShYyjcWolY5OyQLtAvg=" crossorigin="anonymous"></script>
+    <script>
+      var socket = io();
+
+      var s = new sigma({
+        container: 'container'
+      });
+
+      socket.emit('request_final_graph', function(data) {
+        socket.emit('graph', data);
+      });
+
+      socket.on("update", function() {
+        socket.emit('request_final_graph', function(data) {
+          socket.emit('graph', data);
+        });
+      });
+
+      socket.on("graph", function(graph) {
+        if (s.isForceAtlas2Running()) {
+          s.killForceAtlas2();
+        }
+        s.graph.clear();
+        s.graph.read(graph);
+        s.refresh();
+        s.startForceAtlas2();
+        setTimeout(function() {
+          s.killForceAtlas2();
+        }, 1000);
+      });
+    </script>
   </body>
 </html>

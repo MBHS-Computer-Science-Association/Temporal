@@ -102,4 +102,40 @@ rep.relationshipEditDescription = function() {
   throw "not implemented";
 };
 
+rep.getSigmaGraph = (callback) => {
+  var batch = db.batch();
+
+  batch.query("MATCH (n) RETURN n");
+  batch.query("MATCH (a)-[r]->(b) RETURN id(r) as id, id(a) as source, id(b) as target");
+
+  batch.commit(function(err, results) {
+    if (err) throw err;
+
+    var graph = {
+      nodes: [],
+      edges: []
+    };
+
+    var raw_nodes = results[0];
+    raw_nodes.forEach(function(node) {
+      node.id = 'n' + node.id;
+      node.label = node.firstname + ' ' + node.lastname;
+      node.size = 1;
+      node.x = Math.random() * 30 - 15;
+      node.y = Math.random() * 30 - 15;
+      graph.nodes.push(node);
+    });
+
+    var raw_edges = results[1];
+    raw_edges.forEach(function(edge) {
+      edge.id = 'e' + edge.id;
+      edge.source = 'n' + edge.source;
+      edge.target = 'n' + edge.target;
+      graph.edges.push(edge);
+    });
+
+    if (callback) callback(graph);
+  });
+};
+
 module.exports = rep;
