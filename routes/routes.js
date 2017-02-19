@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.use(express.static('public'));
 
-router.set('views', path.join(__dirname, 'public'));
-router.set('view engine', 'ejs');
+express.set('views', path.join(__dirname, 'public'));
+express.set('view engine', 'ejs');
 
 module.exports = router;
