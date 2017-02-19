@@ -85,8 +85,8 @@ rep.relationshipEditDescription = function() {
 
 console.log(rep);
 
-rep.createTestNode((result) => {
-  console.log("The result: " + result);
+db.query("MATCH (n) RETURN n", (err, result) => {
+  console.log(result);
 });
 
 console.log("The callback never came back.");
