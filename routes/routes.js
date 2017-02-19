@@ -23,4 +23,8 @@ router.get('/graph', (req,res) => {
   res.render('graph', {edit: false});
 });
 
+router.get('/quiz', (req, res) => {
+  res.render('quiz');
+});
+
 module.exports = router;
