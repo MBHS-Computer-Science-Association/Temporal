@@ -1,6 +1,4 @@
-var exports = module.exports;
-
-exports = function(server) {
+var exports = module.exports = function(server) {
   var io = require('socket.io')(server);
   io.on('connection', (socket) => {
     console.log("User connected.");
