@@ -37,7 +37,7 @@ var exports = module.exports = function(server) {
             data = [[list[i].name],[related[0]],[]];
         }
       }
-        data = [["Russian Revolution"],["Vietnam War"],["both are wars"], ["Thai", "Trevor", "both are the same person"],["Renaissance","Scientific Revolution","both changed the world"],["Donald Trump", "Vladimir Putin", "both are working for Russia"]];
+        data = [["Russian Revolution","Vietnam War","both are wars"], ["Thai", "Trevor", "both are the same person"],["Renaissance","Scientific Revolution","both changed the world"],["Donald Trump", "Vladimir Putin", "both are working for Russia"]];
         console.log(data);
       socket.emit('data', data);
 
