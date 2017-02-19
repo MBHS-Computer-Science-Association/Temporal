@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 });
 router.get('/login', (req, res) => {
   // initial login stuff
-  res.sendFile(path.resolve('/public/login.html'));
+  res.sendFile(path.resolve(__dirname + '/../public/login.html'));
 });
 router.post('/login', (req, res) => {
   // authenticate login
@@ -37,7 +37,7 @@ router.post('/login', (req, res) => {
 });
 router.get('/signup', (req, res) => {
   // create an account
-  res.sendFile(path.resolve('/public/signup.html'));
+  res.sendFile(path.resolve(__dirname + '/../public/signup.html'));
 });
 router.post('/signup', (req, res) => {
   auth.signup( req.query.username, req.query.password, req.query.email );
@@ -46,7 +46,7 @@ router.post('/signup', (req, res) => {
 router.get('/logout', (req, res) => {
   // TODO: need to get session
   auth.destroySession( sess );
-  res.sendFile(path.resolve('/../public/logout.html'));
+  res.sendFile(path.resolve(__dirname + '/../public/logout.html'));
 });
 
 module.exports = router;
