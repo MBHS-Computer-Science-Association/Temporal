@@ -74,7 +74,7 @@ rep.nodeEditTitle = function(nodeId, newTitle, callback) {
   newDesc - the new description of the node to edit
 */
 rep.nodeEditDescription = function(nodeId, newDesc, callback) {
-  db.query("MATCH (n) WHERE id(n) = {id} SET n.description = {description}", {id: nodeId, title: newDesc}, function(err, result) {
+  db.query("MATCH (n) WHERE id(n) = {id} SET n.description = {description}", {id: nodeId, description: newDesc}, function(err, result) {
     if (err) throw err;
     if (callback) callback();
   });
