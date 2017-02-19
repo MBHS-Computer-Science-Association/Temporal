@@ -10,7 +10,17 @@ var routes = require('./routes/routes');
 var routesauth = require('./routes/auth');
 var routessets = require('./routes/sets');
 
+// session handling
+var pg = require('pg'), session = require('express-session'), pgSession = require('connect-pg-simple')(session);
+
 app.set('port', process.env.PORT || 3000);
+
+app.use(session({
+  store: new pgSession(),
+  secret: 'l30nard0daVichyFrance',
+  resave: false,
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
+}));
 
 app.use('/', routes);
 app.use('/auth', routesauth);

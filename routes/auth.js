@@ -16,25 +16,29 @@ router.get('/', function(req, res) {
 });
 router.get('/login', function(req, res) {
   // initial login stuff
-  res.sendFile('login.html');
+  res.render('login.html');
 });
 router.post('/login', function(req, res) {
   // authenticate login
-  auth.login( req.query.username, req.query.password );
-  res.sendFile('login.html');
+  if ( auth.login( req.query.username, req.query.password ) ) {
+    // Session stored in sess
+    // TODO: do something with sess
+    sess = auth.createSession(req, res, req.query.username);
+    res.render('login.html');
+  }
 });
 router.get('/signup', function(req, res) {
   // create an account
-  res.sendFile('signup.html');
+  res.render('signup.html');
 });
 router.post('/signup', function(req, res) {
   auth.signup( req.query.username, req.query.password, req.query.email );
-  res.sendFile('signup.html');
+  res.render('signup.html');
 });
 router.get('/logout', function(req, res) {
-  // TODO: session needs to be changed
-  auth.logout( session );
-  res.sendFile('logout.html');
+  // TODO: need to get session
+  auth.destroySession( sess );
+  res.render('logout.html');
 });
 
 module.exports = router;
