@@ -11,7 +11,8 @@ var exports = module.exports = function(server) {
       console.log("User disconnected.");
     });
 
-    if(socket.on('quiz', (quiz) => {return isQuizzing = true;} == true){
+    socket.on('quiz', (quiz) => {isQuizzing = true;});
+    if(isQuizzing == true){
       var totalNodes = ;//use JEffrey database to see how many nodes in user set
       while(isQuizzing){
         var nextQuestion = false;
@@ -25,7 +26,7 @@ var exports = module.exports = function(server) {
 
         while(!nextQuestion){
         socket.on('answer', (answer) => {
-          if(answer == /* SOME CORRECT ANSWER */){
+          if(answer == /* SOME CORRECT ANSWER 1,2,3,4*/){
             isCorrect = true;
           }
         });
