@@ -91,6 +91,7 @@ auth.signup = (username, password, email) => {
       "email": email
     };
     console.log("Adding to DB");
+    console.log("jsonobj: " + JSON.stringify(jsonobj));
     // add to database
     db.query('INSERT INTO users(data) VALUES ($1)', [JSON.stringify(jsonobj)], (err, result) => {
       if (err) {
