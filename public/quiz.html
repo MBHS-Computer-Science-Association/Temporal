@@ -33,26 +33,32 @@
                     <label>Please choose the correct relationship</label>
                     <div class="field">
                       <div class="ui radio checkbox">
-                        <input type="radio" name="quiz">
-                          <label>Once a week</label>
+                        <input type="radio" name="quiz" id="option1" class="quizOption">
+                          <label id="label1">Once a week</label>
                         </div>
                       </div>
                       <div class="field">
                         <div class="ui radio checkbox">
-                          <input type="radio" name="quiz">
-                          <label>2-3 times a week</label>
+                          <input type="radio" name="quiz" id="option2" class="quizOption">
+                          <label id="label2">2-3 times a week</label>
                         </div>
                       </div>
                       <div class="field">
                         <div class="ui radio checkbox">
-                          <input type="radio" name="quiz">
-                          <label>Once a day</label>
+                          <input type="radio" name="quiz" id="option3" class="quizOption">
+                          <label id="label3">Once a day</label>
                         </div>
                       </div>
                       <div class="field">
                         <div class="ui radio checkbox">
-                          <input type="radio" name="quiz">
-                          <label>Twice a day</label>
+                          <input type="radio" name="quiz" id="option4" class="quizOption">
+                          <label id="label4">Twice a day</label>
+                        </div>
+                        <div class="ui right floated animated fade positive button" tabindex="0">
+                          <div class="visible content">Submit</div>
+                          <div class="hidden content" id="yougotthis">
+                            You got this!
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -61,4 +67,5 @@
         </div>
       </div>
   </body>
+  <script src="quiz.js"></script>
 </html>

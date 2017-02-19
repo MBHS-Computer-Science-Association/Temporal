@@ -1,11 +1,4 @@
-var db = require('./graphdb');
-
-var totalNodes = db.totalNodes();
-
-function loopQuiz(){
-  while(totalNodes-- > 0){
-
-  }
-
-
-}
+$('.quizOptions').onClick({
+  $('#yougotthis').show();
+  document.getElementById('yougotthis').show();
+});
