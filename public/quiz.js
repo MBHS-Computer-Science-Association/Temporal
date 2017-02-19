@@ -1,5 +1,6 @@
 var socket = io();
 
+
 socket.on('data', (data) => {
   document.getElementById('label1').innerHTML = data[0][0] + ' is related to ' + data[0][1] + ' because ' + data[0][2];
   document.getElementById('label2').innerHTML = data[1][0] + ' is related to ' + data[1][1] + ' because ' + data[1][2];
@@ -8,5 +9,14 @@ socket.on('data', (data) => {
 });
 
 $('.button').click(function(){
+  var isCorrect = false
   socket.emit('answer', $('input:radio[name=quiz]:checked').val());
+  socket.on('nextQ', (bool) => {
+    isCorrect = bool;
+  });
+  if(isCorrect){
+  document.getElementById('correctness').innerHTML = 'True';
+}else {
+  document.getElementById('correctness').innerHTML = 'False';
+}
 });
