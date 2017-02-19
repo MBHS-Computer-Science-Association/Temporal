@@ -9,8 +9,11 @@ var db = require('./database');
 var crypto = require('crypto');
 var session = require('express-session');
 
-passwordhash = (password) => {
-  return crypto.pbkdf2(password, 'thet3mp3r3dglass$#ATT3RZwhenUsh00tGUNZthruIT#REPEALtheSECONDamendmentNOW', 100000, 512, 'sha512');
+passwordhash = (password, res) => {
+  crypto.pbkdf2(password, 'thet3mp3r3dglass$#ATT3RZwhenUsh00tGUNZthruIT#REPEALtheSECONDamendmentNOW', 100000, 512, 'sha512', (err, key) => {
+    if (err) throw err;
+    res = key;
+  });
   // password, salt, iterations, keylen, digest, callback (not used here)
 };
 
@@ -20,7 +23,9 @@ auth.login = (username, password) => {
   // if not found, return false
   var count = 0;
   // COUNT(*) vs *
-  var query = db.query('SELECT * FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', ['username'], passwordhash(password) );
+  var pwhres;
+  passwordhash(password, pwhres);
+  var query = db.query('SELECT * FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', ['username'], pwhres );
   query.on('row', (row, res) => {
     count++;
     console.log(res.rows[0]);
@@ -56,9 +61,11 @@ auth.signup = (username, password, email) => {
 
   // make a JSON object to pass into database
   //var jsonobj = JSON.parse('{"username":"' + username + '", "password":"' + passwordhash(password) + '", "email":"' + email + '"}');
+  var pwhres;
+  passwordhash(password,pwhres);
   var jsonobj = {
     "username": username,
-    "password": passwordhash(password),
+    "password": pwhres,
     "email": email
   };
   console.log("Adding to DB");
