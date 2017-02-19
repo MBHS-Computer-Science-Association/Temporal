@@ -56,14 +56,29 @@ describe('graphene database', () => {
   });
 
   describe('createRelationship', () => {
-    it('should create a new relationship with title and description');
+    it('should create a new relationship with title and description', (done) => {
+      graphdb.createRelationship(2, 3, "Caused", "out of spite", () => {
+        // assert that the relationship is created
+        done();
+      });
+    });
   });
 
   describe('relationshipEditTitle', () => {
-    it('should change the title');
+    it('should change the title', (done) => {
+      graphdb.relationshipEditTitle(7, "Aggravated", () => {
+        // assert that the title is changed
+        done();
+      });
+    });
   });
 
   describe('relationshipEditDescription', () => {
-    it('should change the description');
+    it('should change the description', (done) => {
+      graphdb.relationshipEditDescription(7, "This was a result of the lack of provisions.", () => {
+        // assert that the description is changed
+        done();
+      });
+    });
   });
 });
