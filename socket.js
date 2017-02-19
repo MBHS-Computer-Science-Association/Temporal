@@ -27,15 +27,17 @@ var exports = module.exports = function(server) {
 
         for(var i = 0; i < totalNodes; i++){
           if(list[i].id == totalNodes){
-            data = [list[i].name, db.];
+            //data = [list[i].name];
           }
         }
+        data = [["Russian Revolution"],["Vietnam War"],["both are wars"], ["Thai", "Trevor", "both are the same person"],["Renaissance","Scientific Revolution","both changed the world"],["Donald Trump", "Vladimir Putin", "both are working for Russia"]];
 
       socket.emit('data', data);
 
         while(!nextQuestion){
         socket.on('answer', (answer) => {
-          if(answer == /* SOME CORRECT ANSWER 1,2,3,4*/){
+          //TODO: change the answer checker
+          if(answer == 1){
             isCorrect = true;
           }
         });
