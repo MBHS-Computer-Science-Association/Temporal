@@ -17,16 +17,18 @@ var rep = {};
 rep.createNode = function(newTitle, newDesc, callback) {
   db.query("CREATE (n {title: {title}, description: {description}}) RETURN id(n) as id", {title: newTitle, description: newDesc}, function(err, result) {
     if (err) throw err;
-    callback(result[0].id);
+    if (callback) callback(result[0].id);
   });
 };
 
 /**
   nodeId - id of the node to delete
+  callback - ()
 */
-rep.deleteNode = function(nodeId) {
+rep.deleteNode = function(nodeId, callback) {
   db.query("MATCH (n) WHERE id(n) = {id} DELETE n", {id: nodeId}, function(err, result) {
     if (err) throw err;
+    if (callback) callback();
   });
 };
 

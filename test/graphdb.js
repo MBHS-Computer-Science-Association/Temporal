@@ -12,4 +12,12 @@ describe('graphene database', () => {
       });
     });
   });
+
+  describe('deleteNode', () => {
+    it('should delete the node', (done) => {
+      graphdb.deleteNode(0, () => {
+        done();
+      });
+    });
+  });
 });
