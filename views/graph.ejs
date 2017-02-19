@@ -42,12 +42,14 @@
               <a class="header"><%= card.title %></a>
               <% if (edit) { %>
                 <i class="edit icon"></i>
+                <input type = "text" id="enter-term" placeholder="Term">
               <% } %>
             </div>
             <div class="description">
               <%= card.description %>
               <% if (edit) { %>
                 <i class="edit icon"></i>
+                <textarea rows=2></textarea>
               <% } %>
             </div>
             <div class="extra content">
@@ -57,6 +59,16 @@
               </a>
               <% if (edit) { %>
                 <i class="edit icon"></i>
+
+
+                <div id="new-Relationship">
+                  <!-- Script for creating a new relationship form -->
+                  <script src="addRelationship.js" language="Javascript" type="text/javascript"></script>
+                    <div id="dynamicInput">
+                      <br><input type="text" name="myInputs[]" placeholder=Relationship>
+                  </div>
+                   <input class="fluid ui button" type="button" value="+" onClick="addInput('dynamicInput');">
+                </div>
               <% } %>
             </div>
           </div>
