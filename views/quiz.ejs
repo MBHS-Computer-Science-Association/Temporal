@@ -26,33 +26,34 @@
             </div>
           </div>
         </div>
-        <div class="ten wide column" style="margin-top: 6em">
+        <div class="ten wide column" style="margin-top: 4em">
             <div class="ui raised segments" style="padding: 25px">
                 <div class="ui form">
                   <div class="grouped fields">
                     <h2>Quiz</h2>
+                    <h2 class="ui right floated header" id="correctness"></h2>
                     <label>Please choose the correct relationship</label>
                     <div class="field">
                       <div class="ui radio checkbox">
-                        <input type="radio" name="quiz" id="option1" class="quizOption">
+                        <input type="radio" name="quiz" id="option1" class="quizOption" value="1">
                           <label id="label1">Once a week</label>
                         </div>
                       </div>
                       <div class="field">
                         <div class="ui radio checkbox">
-                          <input type="radio" name="quiz" id="option2" class="quizOption">
+                          <input type="radio" name="quiz" id="option2" class="quizOption" value="2">
                           <label id="label2">2-3 times a week</label>
                         </div>
                       </div>
                       <div class="field">
                         <div class="ui radio checkbox">
-                          <input type="radio" name="quiz" id="option3" class="quizOption">
+                          <input type="radio" name="quiz" id="option3" class="quizOption" value="3">
                           <label id="label3">Once a day</label>
                         </div>
                       </div>
                       <div class="field">
                         <div class="ui radio checkbox">
-                          <input type="radio" name="quiz" id="option4" class="quizOption">
+                          <input type="radio" name="quiz" id="option4" class="quizOption" value="4">
                           <label id="label4">Twice a day</label>
                         </div>
                         <div class="ui right floated animated fade positive button" tabindex="0">
@@ -67,6 +68,7 @@
             </div>
         </div>
       </div>
+        <% include footer.ejs %>
   </body>
   <script src="quiz.js"></script>
 </html>
