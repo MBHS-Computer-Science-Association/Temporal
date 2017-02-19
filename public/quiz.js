@@ -1,4 +1,3 @@
-$('.quizOptions').onClick({
-  $('#yougotthis').show();
-  document.getElementById('yougotthis').show();
+$('.button').click(function(){
+  document.getElementById('label4').innerHTML = 'hello';
 });
