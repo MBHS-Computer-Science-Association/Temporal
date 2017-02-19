@@ -13,6 +13,7 @@
   </head>
   <body>
     <div class="ui bottom attached segment pushable">
+      <% include header.ejs %>
       <div id="edit">
         <!-- Trying to handle editing on a separate url for simplicity -->
          <a href="edit/" class="ui labeled icon button">
@@ -36,17 +37,29 @@
       </div>
       <div class="pusher">
         <div class="ui basic segment">
+          <script src="editable-text.js" language="javascript" type="text/javascript"></script>
           <h3 class="ui header">Application Content</h3>
           <% sets.forEach((set) => { %>
-            <div class="ui segment">
-              <div class="ui sub header">
-                <a href="<%= set.id %>"><%= set.title %></a>
+            <% if(!edit){%>
+              <div class="ui segment">
+                <div class="ui sub header">
+                  <a href="<%= set.id %>"><%= set.title %></a>
               </div>
               <p>
                 <%= set.description %>
               </p>
             </div>
-          <% }) %>
+            <%}else{%>
+              <div class="ui segment">
+                <div class="ui sub header">
+                  <p class="header" data-editable><%= set.title %></a>
+              </div>
+              <p data-editable>
+                <%= set.description %>
+              </p>
+            </div>
+            <% } %>
+          <% }); %>
         </div>
       </div>
     </div>
