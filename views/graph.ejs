@@ -67,7 +67,6 @@
               <% if(!edit){ %>
                <p class="header"><%= card.title %></p>
               <% }else{ %>
-                <i class="edit icon"></i>
                 <p class="header" data-editable /><%= card.title %></p>
               <% } %>
             </div>
@@ -75,7 +74,6 @@
               <% if(!edit) {%>
                 <p><%= card.description %></p>
               <% }else{ %>
-                <i class="edit icon"></i>
                 <p data-editable /><%= card.description %></p>
               <% } %>
             </div>
@@ -85,7 +83,6 @@
                 Relationships
               </a>
               <% if (edit) { %>
-                <i class="edit icon"></i>
 
                 <div id="new-Relationship">
                   <!-- Script for creating a new relationship form -->
