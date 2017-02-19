@@ -8,12 +8,12 @@ var app = require('express');
 var db = require('./database');
 var crypto = require('crypto');
 
-passwordhash = function(password) {
+passwordhash = (password) => {
   return crypto.pbkdf2(password, 'thet3mp3r3dglass$#ATT3RZwhenUsh00tGUNZthruIT#REPEALtheSECONDamendmentNOW', 100000, 512, 'sha512');
   // password, salt, iterations, keylen, digest, callback (not used here)
 };
 
-auth.login = function(username, password) {
+auth.login = (username, password) => {
   // search for user/pass combo
   // if found, return true
   // if not found, return false
@@ -25,7 +25,7 @@ auth.login = function(username, password) {
   return true;
 };
 
-auth.signup = function(username, password, email) {
+auth.signup = (username, password, email) => {
   // ensure username is unique
   var uniqueCheck = db.query('SELECT * FROM users WHERE username->>($1), row_number() OVER as rnum FROM users;', username );
   if ( uniqueCheck !== 0 ) {
@@ -42,14 +42,14 @@ auth.signup = function(username, password, email) {
   db.query('INSERT INTO users(id,data) VALUES ($1)', jsonobj);
 };
 
-auth.createSession = function(req, res, username) {
+auth.createSession = (req, res, username) => {
   // create a session
   var usess = req.session;
   usess.username = username;
   return usess.username;
 };
 
-auth.destroySession = function(session) {
+auth.destroySession = (session) => {
   // destroy the session
   pg.destroy( usersession.username );
 };

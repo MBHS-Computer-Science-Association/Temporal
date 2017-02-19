@@ -8,17 +8,17 @@ var express = require('express');
 var router = express.Router();
 var auth = require('../auth');
 
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
   var loginSessionExists = false;
   if ( loginSessionExists ) {
     res.redirect('/sets');
   }
 });
-router.get('/login', function(req, res) {
+router.get('/login', (req, res) => {
   // initial login stuff
   res.render('login.html');
 });
-router.post('/login', function(req, res) {
+router.post('/login', (req, res) => {
   // authenticate login
   if ( auth.login( req.query.username, req.query.password ) ) {
     // Session stored in sess
@@ -27,15 +27,15 @@ router.post('/login', function(req, res) {
     res.render('login.html');
   }
 });
-router.get('/signup', function(req, res) {
+router.get('/signup', (req, res) => {
   // create an account
   res.render('signup.html');
 });
-router.post('/signup', function(req, res) {
+router.post('/signup', (req, res) => {
   auth.signup( req.query.username, req.query.password, req.query.email );
   res.render('signup.html');
 });
-router.get('/logout', function(req, res) {
+router.get('/logout', (req, res) => {
   // TODO: need to get session
   auth.destroySession( sess );
   res.render('logout.html');
