@@ -27,22 +27,33 @@ router.get('/sets', (req, res) => {
   res.render('sets', mock_sets);
 });
 
-router.get('/graph', (req,res) => {
-  var mock_cards = [
-    {
-      title: "Civil War",
-      description: "This had involved of the bloodiest days in US History."
-    },
-    {
-      title: "Russian Revolution",
-      description: "This was a precursor to the USSR."
-    },
-    {
-      title: "Indian Independence",
-      description: "This caused religious discord."
-    }
-  ];
 
+// Get rid of this later and link to real database.
+var mock_cards = [
+  {
+    title: "Civil War",
+    description: "This had involved of the bloodiest days in US History."
+  },
+  {
+    title: "Russian Revolution",
+    description: "This was a precursor to the USSR."
+  },
+  {
+    title: "Indian Independence",
+    description: "This caused religious discord."
+  }
+];
+
+router.get('/graph', (req,res) => {
+  res.render('graph', {
+    edit: false,
+    mock_cards,
+    definition: "definition",
+    term: "term"
+  });
+});
+
+router.get('/graph/edit', (req,res) => {
   res.render('graph', {
     edit: true,
     mock_cards,
