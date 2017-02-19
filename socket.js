@@ -33,7 +33,6 @@ var exports = module.exports = function(server) {
           }
         if(isCorrect){
             socket.emit('nextQ', true);
-            nextQuestion = true;
         }else{
            socket.emit('nextQ', false);
         }
