@@ -21,8 +21,6 @@ router.get('/login', (req, res) => {
 });
 router.post('/login', (req, res) => {
   // authenticate login
-  res.send(auth.login( req.query.username, req.query.password));
-
   if ( auth.login( req.query.username, req.query.password ) === true ) {
     // Session stored in sess
     // TODO: do something with sess
@@ -45,11 +43,12 @@ router.get('/signup', (req, res) => {
   res.sendFile(path.resolve(__dirname + '/../public/signup.html'));
 });
 router.post('/signup', (req, res) => {
-  if ( auth.signup( req.query.username, req.query.password, req.query.email ) ) {
-    res.send("Creation failure not detected or success");
-  } else {
-    res.send("Creation failure");
-  }
+  res.send(auth.signup(req.query.username, req.query.password, req.query.email));
+  // if ( auth.signup( req.query.username, req.query.password, req.query.email ) ) {
+  //   res.send("Creation failure not detected or success");
+  // } else {
+  //   res.send("Creation failure");
+  // }
   // res.render('signup.html');
 });
 router.get('/logout', (req, res) => {
