@@ -61,7 +61,7 @@ router.get('/graph', (req,res) => {
 router.get('/graph/edit', (req,res) => {
   res.render('graph', {
     edit: true,
-    mock_cards
+    cards: mock_cards
   });
 });
 
