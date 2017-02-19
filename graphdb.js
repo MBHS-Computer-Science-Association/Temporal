@@ -50,6 +50,9 @@ rep.getNode = function(nodeId, callback) {
 
 /**
   callback - ([node])
+    where node is
+      title - string representing title
+      description - string representing description
 */
 rep.getAllNodes = function(callback) {
   db.query("MATCH (n) RETURN n", (err, result) => {
