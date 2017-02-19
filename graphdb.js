@@ -94,12 +94,28 @@ rep.createRelationship = function(srcId, destId, newTitle, newDesc, callback) {
   });
 };
 
-rep.relationshipEditTitle = function() {
-  throw "not implemented";
+/**
+  relId - the id of the relationship to edit
+  newTitle - the new title of the relationship
+  callback - ()
+*/
+rep.relationshipEditTitle = function(relId, newTitle, callback) {
+  db.query("MATCH ()-[r]->() WHERE id(r) = {id} SET r.title = {title}", {id: relId, title: newTitle}, (err, result) => {
+    if (err) throw err;
+    if (callback) callback();
+  });
 };
 
-rep.relationshipEditDescription = function() {
-  throw "not implemented";
+/**
+  relId - the id of the relationship to edit
+  newTitle - the new description of the relationship
+  callback - ()
+*/
+rep.relationshipEditDescription = function(relId, newDesc, callback) {
+  db.query("MATCH ()-[r]->() WHERE id(r) = {id} SET r.description = {description}", {id: relId, description: newDesc}, (err, result) => {
+    if (err) throw err;
+    if (callback) callback();
+  });
 };
 
 module.exports = rep;
