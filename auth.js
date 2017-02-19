@@ -19,7 +19,8 @@ auth.login = (username, password) => {
   // if found, return true
   // if not found, return false
   var count = 0;
-  var query = db.query('SELECT COUNT(*) FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', ['username'], passwordhash(password) );
+  // COUNT(*) vs *
+  var query = db.query('SELECT * FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', ['username'], passwordhash(password) );
   query.on('row', (row, res) => {
     count++;
     console.log(res.rows[0]);
@@ -38,7 +39,7 @@ auth.login = (username, password) => {
 auth.signup = (username, password, email) => {
   // ensure username is unique
   var count = 0;
-  var query = db.query('SELECT COUNT(*) FROM users WHERE data->>\'username\' = ($1);', ['username']);
+  var query = db.query('SELECT * FROM users WHERE data->>\'username\' = ($1);', ['username']);
   query.on('row', (row, res) => {
     count++;
     console.log(res.rows[0]);
