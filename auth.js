@@ -23,7 +23,6 @@ auth.login = (username, password) => {
   // if found, return true
   // if not found, return false
   var count = 0;
-  var retrows = [];
   // COUNT(*) vs *
   // var pwhres = passwordhash(password);
   db.query('SELECT COUNT(*) FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', [username, password], ( err, res ) => {
@@ -31,7 +30,9 @@ auth.login = (username, password) => {
       console.log("Error with DB query");
       throw err;
     }
+    var retrows = [];
     retrows.unshift(res.rows);
+    console.log("Count var: " + retrows[0].count);
     count = retrows[0].count;
     db.end((err) => {
       if (err) {
