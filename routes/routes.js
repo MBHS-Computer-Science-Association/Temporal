@@ -56,8 +56,8 @@ router.get('/graph', (req,res) => {
     edit: false,
     // resp: res,
     cards: mock_cards,
-    definition: "definition",
-    term: "term"
+    // definition: "definition",
+    // term: "term"
   });
 });
 
@@ -65,8 +65,8 @@ router.get('/graph/edit', (req,res) => {
   res.render('graph', {
     edit: true,
     mock_cards,
-    definition: "definition",
-    term: "term"
+    // definition: "definition",
+    // term: "term"
   });
 });
 
