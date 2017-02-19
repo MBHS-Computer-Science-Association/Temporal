@@ -8,11 +8,11 @@ var exports = module.exports = function(server) {
     console.log("User connected.");
   });
 
-    socket.on('disconnect', () => {
+    io.on('disconnect', () => {
       console.log("User disconnected.");
     });
 
-    socket.on('quiz', (quiz) => {isQuizzing = true;});
+    io.on('quiz', (quiz) => {isQuizzing = true;});
     if(isQuizzing == true){
       var totalNodes;
       db.getNodeCount((dat) => {
@@ -40,10 +40,10 @@ var exports = module.exports = function(server) {
       }
         data = [["Russian Revolution"],["Vietnam War"],["both are wars"], ["Thai", "Trevor", "both are the same person"],["Renaissance","Scientific Revolution","both changed the world"],["Donald Trump", "Vladimir Putin", "both are working for Russia"]];
         console.log(data);
-      socket.emit('data', data);
+      io.emit('data', data);
 
         while(!nextQuestion){
-        socket.on('answer', (answer) => {
+        io.on('answer', (answer) => {
           //TODO: change the answer checker
           console.log(answer+ '');
           if(answer == 1){
@@ -51,26 +51,26 @@ var exports = module.exports = function(server) {
           }
         });
         if(isCorrect){
-            socket.emit('nextQ', true);
+            io.emit('nextQ', true);
             nextQuestion = true;
         }else{
-           socket.emit('nextQ', false);
+           io.emit('nextQ', false);
         }
       }
       totalNodes--;
     }
   }
-    socket.on('answer', (ans) => {
+    io.on('answer', (ans) => {
       console.log(ans);
     });
 
-    socket.on('graph', function(graph) {
-      socket.emit('graph', graph);
+    io.on('graph', function(graph) {
+      io.emit('graph', graph);
       console.log('Sending graph.');
       console.log(graph);
     });
 
-    socket.on('request_final_graph', function(callback) {
+    io.on('request_final_graph', function(callback) {
       db.getSigmaGraph(callback);
     });
 
