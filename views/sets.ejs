@@ -44,8 +44,7 @@
                 <div class="ui sub header">
                   <% if(!edit){%>
                     <a href="<%= set.id %>"><%= set.title %></a>
-                    <% } %>
-                    <% else{ %>
+                    <% }else{ %>
                       <p data-editable><%= set.title %></p>
                     <% } %>
                 </div>
@@ -53,7 +52,7 @@
                 <%= set.description %>
               </p>
             </div>
-          <% }); %>
+          <% }) %>
         </div>
       </div>
     </div>
