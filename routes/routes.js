@@ -30,7 +30,33 @@ router.get('/sets', (req, res) => {
   ];
 
   res.render('sets', {
-    sets: mock_sets
+    sets: mock_sets,
+    edit: false
+  });
+});
+
+router.get('/sets/edit',(req, res) => {
+  var mock_sets = [
+    {
+      title: "AP Biology Part I",
+      description: "Life! There is nothing better than life.",
+      id: 2341098
+    },
+    {
+      title: "AP Chemistry Ions",
+      description: "I'm reacting to this.",
+      id: 2122348
+    },
+    {
+      title: "AP Calculus BC Derivatives",
+      description: "Taking the derivative sucks.",
+      id: 2342301
+    }
+  ];
+
+  res.render('sets', {
+    sets: mock_sets,
+    edit: true
   });
 });
 
