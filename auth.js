@@ -22,7 +22,7 @@ auth.login = (username, password) => {
   // search for user/pass combo
   // if found, return true
   // if not found, return false
-  var count = 0;
+
   // COUNT(*) vs *
   // var pwhres = passwordhash(password);
   db.query('SELECT COUNT(*) FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', [username, password], ( err, res ) => {
@@ -31,6 +31,7 @@ auth.login = (username, password) => {
       throw err;
     }
     var retrows = [];
+    var count = 0;
     retrows.unshift(res.rows);
     console.log("JSON Stringify of retrows[0] " + JSON.stringify(retrows[0]) );
     console.log("Count var: " + retrows[0][0].count);
@@ -39,7 +40,7 @@ auth.login = (username, password) => {
       if (err) {
         console.log("Error with ending");
         throw err;
-      } else if ( count === 1 ) {
+      } else if ( count == 1 ) {
         console.log("COUNT: " + count);
         return true;
       } else {
