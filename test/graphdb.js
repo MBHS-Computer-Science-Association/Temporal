@@ -84,4 +84,17 @@ describe('graphene database', () => {
       });
     });
   });
+
+  describe('getNodeCount', () => {
+    it('should return the number of nodes in the database', (done) => {
+      graphdb.getNodeCount((count) => {
+        assert(typeof count === 'number');
+        done();
+      });
+    });
+  });
+
+  describe('getRelatedNodes', () => {
+    it('should return all nodes directly related to the node');
+  });
 });

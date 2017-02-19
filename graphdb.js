@@ -125,6 +125,13 @@ rep.relationshipEditDescription = function(relId, newDesc, callback) {
 // TODO: get all relationships
 
 // TODO: count nodes
+rep.getNodeCount = function(callback) {
+  db.query("MATCH (n) RETURN count(DISTINCT n)", (err, result) => {
+    if (err) throw err;
+    if (callback) callback(result);
+  });
+};
+
 // TODO: search nodes by name
 
 rep.getRelatedNodes = function(nodeId, callback) {
