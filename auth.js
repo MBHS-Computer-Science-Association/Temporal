@@ -7,6 +7,7 @@ var auth = {}; // create an empty object
 var app = require('express');
 var db = require('./database');
 var crypto = require('crypto');
+var session = require('express-session');
 
 passwordhash = (password) => {
   return crypto.pbkdf2(password, 'thet3mp3r3dglass$#ATT3RZwhenUsh00tGUNZthruIT#REPEALtheSECONDamendmentNOW', 100000, 512, 'sha512');
@@ -51,7 +52,7 @@ auth.createSession = (req, res, username) => {
 
 auth.destroySession = (session) => {
   // destroy the session
-  pg.destroy( usersession.username );
+  session.destroy( usersession.username );
 };
 
 module.exports = auth;
