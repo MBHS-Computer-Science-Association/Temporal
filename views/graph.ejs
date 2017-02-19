@@ -66,13 +66,14 @@
             </div>
           </div>
         <%}else{%>
-          <div id="plotted-cards">
-            <div class="ui card">
+        <div id="plotted-cards">
+          <% cards.forEach((card) => { %>
+          <div class="ui card">
             <div class="content">
-              <a class="header"><%= term %></a>
+              <a class="header"><%= card.title %></a>
             </div>
             <div class="description">
-              <%= definition %>
+              <%= card.description %>
             </div>
             <div class="extra content">
               <a href="#">
@@ -81,9 +82,9 @@
               </a>
             </div>
           </div>
+          <% }); %>
         </div>
       <% } %>
-      <!-- Loop through the cards, displaying them here () -->
       </div>
 
       <div class="pusher">
