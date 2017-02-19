@@ -20,7 +20,7 @@ router.get('/sets', (req, res) => {
 });
 
 router.get('/graph', (req,res) => {
-  res.render('graph');
+  res.render('graph', {edit: false});
 });
 
 module.exports = router;
