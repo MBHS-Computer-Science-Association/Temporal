@@ -59,18 +59,16 @@
               <% if(!edit){ %>
                <p class="header"><%= card.title %></p>
               <% }else{ %>
-                <p class="header" data-editable /><%= card.title %></p>
                 <i class="edit icon"></i>
-                <input type = "text" id="enter-term" placeholder="Term">
+                <p class="header" data-editable /><%= card.title %></p>
               <% } %>
             </div>
             <div class="description">
               <% if(!edit) {%>
                 <p><%= card.description %></p>
               <% }else{ %>
-                <p data-editable /><%= card.description %></p>
                 <i class="edit icon"></i>
-                <textarea rows=2></textarea>
+                <p data-editable /><%= card.description %></p>
               <% } %>
             </div>
             <div class="extra content">
