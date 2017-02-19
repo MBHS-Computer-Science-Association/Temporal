@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.slim.min.js" integrity="sha256-1R5guYd/H+WEatv0fPVrVqIvu/4ntv7G0Fa5ooY+24g=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+      integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css" integrity="sha256-wT6CFc7EKRuf7uyVfi+MQNHUzojuHN2pSw0YWFt2K5E=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js" integrity="sha256-flVaeawsBV96vCHiLmXn03IRJym7+ZfcLVvUWONCas8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+      <div class="ui middle aligned grid">
+        <% include header.ejs %>
+        <div class="four wide column">
+          <div class="ui visible inverted left vertical sidebar menu" style="margin:5px">
+            <div class="ui search" id="graph-search">
+              <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="Search graph...">
+                <i class="search icon"></i>
+              </div>
+              <div class="results"></div>
+            </div>
+          </div>
+        </div>
+        <div class="ten wide column" style="margin-top: 6em">
+            <div class="ui raised segments" style="padding: 25px">
+                <div class="ui form">
+                  <div class="grouped fields">
+                    <h2>Quiz</h2>
+                    <label>Please choose the correct relationship</label>
+                    <div class="field">
+                      <div class="ui radio checkbox">
+                        <input type="radio" name="quiz" id="option1" class="quizOption">
+                          <label id="label1">Once a week</label>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <div class="ui radio checkbox">
+                          <input type="radio" name="quiz" id="option2" class="quizOption">
+                          <label id="label2">2-3 times a week</label>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <div class="ui radio checkbox">
+                          <input type="radio" name="quiz" id="option3" class="quizOption">
+                          <label id="label3">Once a day</label>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <div class="ui radio checkbox">
+                          <input type="radio" name="quiz" id="option4" class="quizOption">
+                          <label id="label4">Twice a day</label>
+                        </div>
+                        <div class="ui right floated animated fade positive button" tabindex="0">
+                          <div class="visible content">Submit</div>
+                          <div class="hidden content">
+                            You got this!
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+      </div>
+  </body>
+  <script src="quiz.js"></script>
+</html>
