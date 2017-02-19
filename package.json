@@ -1,7 +1,7 @@
 {
   "name": "temporal",
   "version": "0.0.1",
-  "description": "We make learning easier.",
+  "description": "Because knowledge is temporal, but with us, it's not.",
   "scripts": {
     "start": "node server.js",
     "test": "mocha"
@@ -12,6 +12,9 @@
     "socket.io": "^1.7.3",
     "python-shell": "^0.4.0",
     "ejs": "~2.5.2"
+    "pg": "^6.1.2",
+    "crypto": "^0.0.3",
+    "express-session": "^1.15.1",
   },
   "devDependencies" : {
     "chai": "*",
