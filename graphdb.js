@@ -12,11 +12,10 @@ console.log("Database is ready.");
 var rep = {};
 
 rep.createTestNode = function(callback) {
-  db.query("CREATE (n {title: \"Sample Title\", description: \"Sample Description\"}) RETURN id(n)", (err, result) => {
+  db.query("CREATE (n) RETURN id(n)", (err, result) => {
     if (err) throw err;
     console.log(result);
-    console.log(result[0].id);
-    callback(result[0].id);
+    callback(result);
   });
 };
 
@@ -86,9 +85,8 @@ rep.relationshipEditDescription = function() {
 
 console.log(rep);
 
-rep.createTestNode((id) => {
-  console.log("The new node id: " + id);
-  assert(typeof id === 'number');
+rep.createTestNode((result) => {
+  console.log("The result: " + result);
 });
 
 module.exports = rep;
