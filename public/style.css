@@ -1,3 +1,7 @@
+#title{
+  padding: 90px;
+}
+
 #login{
   padding: 50px;
   top:50%;
@@ -33,7 +37,9 @@
 }
 
 #edit{
-  text-align: center;
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 10px;
 }
 
 #edit-card{
@@ -43,4 +49,14 @@
 #add-relationship{
   color: black;
   length: 50px;
+}
+
+
+#menu-grid{
+  text-align: left;
+  width: 200px;
+}
+
+#menu{
+  width: 250px;
 }
