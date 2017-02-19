@@ -9,6 +9,7 @@ var db = new pg.Client(process.env.DATABASE_URL | 'postgres://postgres@localhost
 
 db.connect(function(err) {
   if ( err ) {
+    console.log(process.env.DATABASE_URL | 'postgres://postgres@localhost/travis_ci_test');
     console.log(process.env.DATABASE_URL);
     console.log('postgres://postgres@localhost/travis_ci_test');
     throw err;
