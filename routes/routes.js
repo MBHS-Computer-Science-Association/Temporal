@@ -11,7 +11,7 @@ router.get('/card', (req, res) => {
 });
 
 router.get('/sets', (req, res) => {
-  var mock_sets = {sets: [
+  var mock_sets = [
     {
       title: "AP Biology Part I",
       description: "Life! There is nothing better than life.",
@@ -27,14 +27,16 @@ router.get('/sets', (req, res) => {
       description: "Taking the derivative sucks.",
       id: 2342301
     }
-  ]};
+  ];
 
-  res.render('sets', mock_sets);
+  res.render('sets', {
+    mock_sets
+  });
 });
 
 
 // Get rid of this later and link to real database.
-var mock_cards = {cards: [
+var mock_cards = [
   {
     title: "Civil War",
     description: "This had involved of the bloodiest days in US History."
@@ -47,13 +49,13 @@ var mock_cards = {cards: [
     title: "Indian Independence",
     description: "This caused religious discord."
   }
-]};
+];
 
 router.get('/graph', (req,res) => {
   res.render('graph', {
     edit: false,
     // resp: res,
-    mock_cards,
+    cards: mock_cards,
     definition: "definition",
     term: "term"
   });
