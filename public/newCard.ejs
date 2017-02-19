@@ -30,27 +30,17 @@
         <div class="extra content">
             <i class="share alternate icon"></i>
             Enter relationships:
-            <input type="text" id="enter-relationship" placeholder="Relationship">
-        </div>
-      </div>
-      <div id="add-relationship">
-        <!-- Script for adding relationship forms -->
-        <script language="javascript">
-            function toggle() {
-            	var ele = document.getElementById("toggleText");
-            	var text = document.getElementById("displayText");
-            	if(ele.style.display == "block") {
-                		ele.style.display = "none";
-            		      text.innerHTML = "show";
-              }
-            }
-            </script>
-
-            <a id="displayText" href="javascript:toggle();">show</a>
-            <div id="toggleText" style="display: none">
-              <button class="fluid ui button" formaction="javascript:toggle()">+</button>
+            <div id="new-Relationship">
+              <!-- Script for creating a new relationship form -->
+              <script src="addRelationship.js" language="Javascript" type="text/javascript"></script>
+                <div id="dynamicInput">
+                  <br><input type="text" name="myInputs[]" placeholder="Relationship">
+              </div>
+               <input class="fluid ui button" type="button" value="+" onClick="addInput('dynamicInput');">
             </div>
-      </div>
+          </div>
+        </div>
+      </form>
     </div>
   </body>
 </html>
