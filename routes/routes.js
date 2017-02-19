@@ -23,8 +23,7 @@ router.get('/graph', (req,res) => {
   res.render('graph', {
     edit: false,
     definition: "definition",
-    term: "term",
-    relationship: "relationship" 
+    term: "term"
   });
 });
 
