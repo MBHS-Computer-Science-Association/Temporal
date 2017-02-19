@@ -41,7 +41,7 @@
           <div class="ui card form">
             <script src="editable-text.js" language="javascript" type="text/javascript"></script>
             <div class="content">
-              <a class="header"><%= card.title %></a>
+              <a class="header" data-editable><%= card.title %></a>
               <% if (edit) { %>
                 <i class="edit icon"></i>
                 <input type = "text" id="enter-term" placeholder="Term">
@@ -114,7 +114,7 @@
 
       <div class="pusher">
         <div id="graph" class="ui basic segment">
-          <h3 class="ui header" data-editable>Application Content</h3>
+          <h3 class="ui header">Application Content</h3>
             Graph
             <!-- Sigma div (graph) goes here -->
         </div>
