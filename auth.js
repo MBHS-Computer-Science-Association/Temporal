@@ -31,12 +31,14 @@ auth.login = (username, password) => {
     count++;
     rows.unshift(row.data);
     db.end((err) => {
-      if (err) throw err;
-      return false;
+      if (err) {
+        throw err;
+      } else {
+        console.log("COUNT: " + count);
+        return true;
+      }
     });
-    console.log("COUNT" + count);
   });
-  return true;
   // query.on('row', (row, res) => {
   //   count++;
   //   console.log(res.rows[0]);
