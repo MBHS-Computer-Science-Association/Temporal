@@ -1,0 +1,2 @@
+NumPy >= 1.7.1
+neurolab
