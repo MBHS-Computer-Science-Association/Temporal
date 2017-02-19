@@ -31,7 +31,7 @@ auth.signup = (username, password, email) => {
   var uniqueCheck = db.query('SELECT * FROM users WHERE username->>($1), row_number() OVER as rnum FROM users;', username );
   if ( uniqueCheck !== 0 ) {
     // user already exists
-    return false; // error
+    return uniqueCheck; // error
   }
   // otherwise, proceed
   // ensure email is valid

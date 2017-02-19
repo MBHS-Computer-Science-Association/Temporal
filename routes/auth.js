@@ -21,7 +21,9 @@ router.get('/login', (req, res) => {
 });
 router.post('/login', (req, res) => {
   // authenticate login
-  if ( auth.login( req.query.username, req.query.password ) ) {
+  res.send(auth.login( req.query.username, req.query.password));
+
+  if ( auth.login( req.query.username, req.query.password ) === true ) {
     // Session stored in sess
     // TODO: do something with sess
     sess = auth.createSession(req, res, req.query.username);
