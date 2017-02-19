@@ -43,8 +43,7 @@
             <div class="content">
               <% if(!edit) {%>
                <p class="header"><%= card.title %></p>
-               <% } %>
-              <% else if (edit) { %>
+              <% }else{ %>
                 <p class="header" data-editable><%= card.title %></p>
                 <i class="edit icon"></i>
                 <input type = "text" id="enter-term" placeholder="Term">
