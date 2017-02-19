@@ -42,7 +42,7 @@ rep.deleteNode = function(nodeId, callback) {
   callback - (node)
 */
 rep.getNode = function(nodeId, callback) {
-  db.query("MATCH (n) WHERE id(n) = {id} RETURN n", {id: nodeId}, (err, result) => {
+  db.query("MATCH (n) WHERE id(n) = {id} RETURN {title: n.title, description: n.description, id: id(n)}", {id: nodeId}, (err, result) => {
     if (err) throw err;
     if (callback) callback(result[0]);
   });
@@ -52,7 +52,7 @@ rep.getNode = function(nodeId, callback) {
   callback - ([node])
 */
 rep.getAllNodes = function(callback) {
-  db.query("MATCH (n) RETURN n", (err, result) => {
+  db.query("MATCH (n) RETURN {title: n.title, description: n.description, id: id(n)}", (err, result) => {
     if (err) throw err;
     if (callback) callback(result);
   });
@@ -118,11 +118,20 @@ rep.relationshipEditDescription = function(relId, newDesc, callback) {
   });
 };
 
+// TODO: get all nodes ordered
+
 // TODO: delete relationship by id
 // TODO: get relationship by id
 // TODO: get all relationships
 
 // TODO: count nodes
 // TODO: search nodes by name
+
+rep.getRelatedNodes = function(nodeId, callback) {
+  db.query("MATCH (a)-[*1]-(b) WHERE id(a) = {id} RETURN DISTINCT {title: b.title, description: b.description, id: id(b)}", {id: nodeId}, (err, result) => {
+    if (err) throw err;
+    if (callback) callback(result);
+  });
+};
 
 module.exports = rep;
