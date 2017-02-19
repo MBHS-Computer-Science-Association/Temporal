@@ -19,4 +19,8 @@ router.get('/sets', (req, res) => {
   res.render('sets');
 });
 
+router.get('/graph', (req,res) => {
+  res.render('graph);
+});
+
 module.exports = router;
