@@ -21,22 +21,23 @@ router.get('/login', (req, res) => {
 });
 router.get('/loginsubmit', (req, res) => {
   // authenticate login
-  if ( auth.login( req.query.username, req.query.password ) === true ) {
-    // Session stored in sess
-    // TODO: do something with sess
-    sess = auth.createSession(req, res, req.query.username);
-
-    /*
-    var params = {
-      success: true
-    };
-
-    res.render('login', params); // TODO: change to render
-    */
-    res.send("Login success");
-  } else {
-    res.send("Login failure");
-  }
+  res.send(auth.login( req.query.username, req.query.password ));
+  // if ( auth.login( req.query.username, req.query.password ) === true ) {
+  //   // Session stored in sess
+  //   // TODO: do something with sess
+  //   sess = auth.createSession(req, res, req.query.username);
+  //
+  //   /*
+  //   var params = {
+  //     success: true
+  //   };
+  //
+  //   res.render('login', params); // TODO: change to render
+  //   */
+  //   res.send("Login success");
+  // } else {
+  //   res.send("Login failure");
+  // }
 });
 router.get('/signup', (req, res) => {
   // create an account
