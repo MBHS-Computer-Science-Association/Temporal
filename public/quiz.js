@@ -8,5 +8,5 @@ socket.on('data', (data) => {
 });
 
 $('.button').click(function(){
-  socket.emit('answer', $('input:radio[name=abc]:checked').val());
+  socket.emit('answer', $('input:radio[name=quiz]:checked').val());
 });
