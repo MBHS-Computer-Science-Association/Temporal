@@ -14,19 +14,24 @@ router.get('/sets', (req, res) => {
   var mock_sets = [
     {
       title: "AP Biology Part I",
-      description: "Life! There is nothing better than life."
+      description: "Life! There is nothing better than life.",
+      id: 2341098
     },
     {
       title: "AP Chemistry Ions",
-      description: "I'm reacting to this."
+      description: "I'm reacting to this.",
+      id: 2122348
     },
     {
       title: "AP Calculus BC Derivatives",
-      description: "Taking the derivative sucks."
+      description: "Taking the derivative sucks.",
+      id: 2342301
     }
   ];
 
-  res.render('sets', mock_sets);
+  res.render('sets', {
+    mock_sets
+  });
 });
 
 
@@ -49,27 +54,22 @@ var mock_cards = [
 router.get('/graph', (req,res) => {
   res.render('graph', {
     edit: false,
-    resp: res,
-    mock_cards,
-    definition: "definition",
-    term: "term"
+    cards: mock_cards
   });
 });
 
 router.get('/graph/edit', (req,res) => {
   res.render('graph', {
     edit: true,
-    mock_cards,
-    definition: "definition",
-    term: "term"
+    cards: mock_cards
   });
 });
 
 router.get('/graph/real', (req,res) => {
-  graphdb.getAllNodes((cards) => {
+  graphdb.getAllNodes((response) => {
     res.render('graph', {
-      edit: true,
-      cards
+      edit: false,
+      cards: response
     });
   });
 });

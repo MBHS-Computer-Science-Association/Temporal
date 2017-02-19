@@ -30,7 +30,16 @@
       <div class="pusher">
         <div class="ui basic segment">
           <h3 class="ui header">Application Content</h3>
-          <% for(var i = 0; i < ) %>
+          <% sets.forEach((set) => { %>
+            <div class="ui segment">
+              <div class="ui sub header">
+                <a href="<%= set.id %>"><%= set.title %></a>
+              </div>
+              <p>
+                <%= set.description %>
+              </p>
+            </div>
+          <% }) %>
         </div>
       </div>
     </div>

@@ -10,18 +10,19 @@
       crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css" integrity="sha256-wT6CFc7EKRuf7uyVfi+MQNHUzojuHN2pSw0YWFt2K5E=" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js" integrity="sha256-flVaeawsBV96vCHiLmXn03IRJym7+ZfcLVvUWONCas8=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
   </head>
   <body>
     <div class="ui bottom attached segment pushable">
-     <% include header.ejs%>
-     <script src="editCard.js" language="Javascript" type="text/javascript"></script>
+     <% include header.ejs %>
+     <!-- <script src="editCard.js" language="Javascript" type="text/javascript"></script> -->
      <div id="edit">
-       <button class="ui labeled icon button" onClick="editCard(<%= edit%>, <%= resp%>);">
+       <!-- Trying to handle editing on a separate url for simplicity -->
+        <a href="edit/" class="ui labeled icon button">
          <i class="edit icon"></i>
-           Edit
-         </button>
-       </div>
+         Edit
+        </a>
+      </div>
       <div id="menu" class="ui visible inverted left vertical sidebar menu">
         <div class="ui search" id="graph-search">
           <div class="ui icon input">
@@ -32,6 +33,47 @@
             <!--write a reactive search.js file and implement it here (an array of objects each with a title and description)-->
           </div>
         </div>
+
+
+        <div id="plotted-cards">
+          <% cards.forEach((card) => { %>
+          <div class="ui card form">
+            <div class="content">
+              <a class="header"><%= card.title %></a>
+              <% if (edit) { %>
+                <i class="edit icon"></i>
+                <input type = "text" id="enter-term" placeholder="Term">
+              <% } %>
+            </div>
+            <div class="description">
+              <%= card.description %>
+              <% if (edit) { %>
+                <i class="edit icon"></i>
+                <textarea rows=2></textarea>
+              <% } %>
+            </div>
+            <div class="extra content">
+              <a href="#">
+                <i class="share alternate icon"></i>
+                Relationships
+              </a>
+              <% if (edit) { %>
+                <i class="edit icon"></i>
+
+                <div id="new-Relationship">
+                  <!-- Script for creating a new relationship form -->
+                  <script src="addRelationship.js" language="Javascript" type="text/javascript"></script>
+                    <div id="dynamicInput">
+                      <br><input type="text" name="myInputs[]" placeholder=Relationship>
+                  </div>
+                   <input class="fluid ui button" type="button" value="+" onClick="addInput('dynamicInput');">
+                </div>
+              <% } %>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+
         <% if(edit){ %>
           <div id="edit cards">
             <div class="ui card">
@@ -65,24 +107,7 @@
             </div>
           </div>
         <%}else{%>
-          <div id="plotted-cards">
-            <div class="ui card">
-            <div class="content">
-              <a class="header"><%= term %></a>
-            </div>
-            <div class="description">
-              <%= definition %>
-            </div>
-            <div class="extra content">
-              <a href="#">
-                <i class="share alternate icon"></i>
-                Relationships
-              </a>
-            </div>
-          </div>
-        </div>
-      <% } %>
-      <!-- Loop through the cards, displaying them here () -->
+        <% } %>
       </div>
 
       <div class="pusher">
