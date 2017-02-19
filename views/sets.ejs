@@ -45,9 +45,9 @@
           $el.replaceWith( $input );
 
           var save = function(){
-            var $i = $('<i class="checkmark icon"></i>')
+            var $i = $('<i class="checkmark icon"></i>');
             var $p = $('<p data-editable />').text( $input.val() );
-            $input.replaceWith( $p + '<i class="checkmark icon"></i>');
+            $input.replaceWith( $p + $i);
           };
 
           $input.one('blur', save).focus();
