@@ -12,7 +12,27 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <% include menu.ejs %>
-    <h1>Testing</h1>
+    <div class="ui bottom attached segment pushable">
+      <div id="menu" class="ui visible inverted left vertical sidebar menu">
+        <a class="item" href="/index.html">
+          <i class="home icon"></i>
+          Home
+        </a>
+        <a class="item" href="#">
+          <i class="idea icon"></i>
+          Sets
+        </a>
+        <a class="item">
+          <i class="user icon"></i>
+          Account
+        </a>
+      </div>
+      <div class="pusher">
+        <div class="ui basic segment">
+          <h3 class="ui header">Application Content</h3>
+          <% for(var i = 0; i < ) %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

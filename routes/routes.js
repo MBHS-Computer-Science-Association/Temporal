@@ -57,7 +57,7 @@ router.get('/graph', (req,res) => {
 
 router.get('/graph/edit', (req,res) => {
   res.render('graph', {
-    edit: false,
+    edit: true,
     mock_cards,
     definition: "definition",
     term: "term"
