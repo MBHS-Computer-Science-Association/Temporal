@@ -6,13 +6,12 @@ var exports = module.exports = function(server) {
 
   io.on('connection', (socket) => {
     console.log("User connected.");
-  });
 
-    io.on('disconnect', () => {
+    socket.on('disconnect', () => {
       console.log("User disconnected.");
     });
 
-  io.on('quiz', (quiz) => {isQuizzing = true;});
+  socket.on('quiz', (quiz) => {isQuizzing = true;});
     if(isQuizzing == true){
       var totalNodes;
       db.getNodeCount((dat) => {
@@ -40,10 +39,10 @@ var exports = module.exports = function(server) {
       }
         data = [["Russian Revolution"],["Vietnam War"],["both are wars"], ["Thai", "Trevor", "both are the same person"],["Renaissance","Scientific Revolution","both changed the world"],["Donald Trump", "Vladimir Putin", "both are working for Russia"]];
         console.log(data);
-      io.emit('data', data);
+      socket.emit('data', data);
 
         while(!nextQuestion){
-        io.on('answer', (answer) => {
+        socket.on('answer', (answer) => {
           //TODO: change the answer checker
           console.log(answer+ '');
           if(answer == 1){
@@ -51,29 +50,29 @@ var exports = module.exports = function(server) {
           }
         });
         if(isCorrect){
-            io.emit('nextQ', true);
+            socket.emit('nextQ', true);
             nextQuestion = true;
         }else{
-           io.emit('nextQ', false);
+           socket.emit('nextQ', false);
         }
       }
       totalNodes--;
     }
   }
-    io.on('answer', (ans) => {
+    socket.on('answer', (ans) => {
       console.log(ans);
     });
 
-    io.on('graph', function(graph) {
-      io.emit('graph', graph);
+    socket.on('graph', function(graph) {
+      socket.emit('graph', graph);
       console.log('Sending graph.');
       console.log(graph);
     });
 
-    io.on('request_final_graph', function(callback) {
+    socket.on('request_final_graph', function(callback) {
       db.getSigmaGraph(callback);
     });
-
+  });
   var obj = {};
   return obj;
 }
