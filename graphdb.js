@@ -89,4 +89,6 @@ rep.createTestNode((result) => {
   console.log("The result: " + result);
 });
 
+console.log("The callback never came back.");
+
 module.exports = rep;
