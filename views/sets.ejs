@@ -64,12 +64,15 @@
                     <a href="<%= set.id %>"><%= set.title %></a>
                     <% }else{ %>
                        <p class="header" data-editable><%= set.title %></p>
-
                     <% } %>
                 </div>
-              <p>
+                <% if(!edit){%>
+                  <p>
                 <%= set.description %>
               </p>
+              <% }else{ %>
+                  <p data-editable /><%= set.description %></p>
+                <% } %>
             </div>
           <% }) %>
         </div>

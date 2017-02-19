@@ -35,22 +35,40 @@
           </div>
         </div>
 
-        <script src="editable-text.js" language="javascript" type="text/javascript"></script>
+        <script type="text/javascript">
+          $('body').on('click', '[data-editable]', function(){
+
+            var $el = $(this);
+
+            var $input = $('<input/>').val( $el.text() );
+            $el.replaceWith( $input );
+
+            var save = function(){
+              var $p = $('<p data-editable />').text( $input.val() );
+              $input.replaceWith( $p );
+            };
+
+            $input.one('blur', save).focus();
+
+          });
+        </script>
         <div id="plotted-cards">
           <% cards.forEach((card) => { %>
           <div class="ui card form">
             <div class="content">
-               <p class="header" data-editable><%= card.title %></p>
-              <% if(edit){ %>
-                <p class="header"><%= card.title %></p>
+              <% if(!edit){ %>
+               <p class="header"><%= card.title %></p>
+              <% }else{ %>
+                <p class="header" data-editable /><%= card.title %></p>
                 <i class="edit icon"></i>
                 <input type = "text" id="enter-term" placeholder="Term">
               <% } %>
             </div>
             <div class="description">
-            <p data-editable>  <%= card.description %></p>
-              <% if (edit) { %>
-                <p data-editable>  <%= card.description %></p>
+              <% if(!edit) {%>
+                <p><%= card.description %></p>
+              <% }else{ %>
+                <p data-editable /><%= card.description %></p>
                 <i class="edit icon"></i>
                 <textarea rows=2></textarea>
               <% } %>
