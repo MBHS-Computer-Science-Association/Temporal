@@ -30,7 +30,7 @@ router.get('/sets', (req, res) => {
   ];
 
   res.render('sets', {
-    mock_sets
+    sets: mock_sets
   });
 });
 
