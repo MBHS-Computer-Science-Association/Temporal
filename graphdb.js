@@ -7,6 +7,8 @@ var db = seraph({
   pass: url.auth.split(':')[1]
 });
 
+console.log("Database is ready.");
+
 var rep = {};
 
 rep.createTestNode = function(callback) {
@@ -81,5 +83,7 @@ rep.relationshipEditDescription = function() {
   throw "not implemented";
 };
 
+
+console.log(rep);
 
 module.exports = rep;
