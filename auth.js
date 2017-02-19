@@ -25,7 +25,7 @@ auth.login = (username, password) => {
   var count = 0;
   // COUNT(*) vs *
   // var pwhres = passwordhash(password);
-  var query = db.query('SELECT * FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', ['username'], password );
+  var query = db.query('SELECT * FROM users WHERE data->>\'username\' = ($1) AND data->>\'password\' = ($2);', ['username'], ['password'] );
   query.on('row', (row, res) => {
     count++;
     console.log(res.rows[0]);
