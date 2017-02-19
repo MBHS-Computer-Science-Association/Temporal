@@ -31,6 +31,7 @@ auth.login = (username, password) => {
       console.log("Error with DB query");
       throw err;
     }
+    console.log("res.rows[0]: " + res.rows[0]);
     count = res.rows[0];
     db.end((err) => {
       if (err) {
