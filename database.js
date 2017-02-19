@@ -23,3 +23,5 @@ db.connect(function(err) {
   db.query(sessionsql);
   */
 });
+
+module.exports = db;
