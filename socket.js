@@ -7,8 +7,6 @@ var exports = module.exports = function(server) {
       console.log("User disconnected.");
     });
   });
-
   var obj = {};
-
   return obj;
 };
