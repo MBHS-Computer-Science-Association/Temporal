@@ -26,3 +26,21 @@
       margin-left: auto;
       margin-right: auto;
   }
+
+#graph-search{
+  text-align: center;
+  padding-top: 50px;
+}
+
+#edit{
+  text-align: center;
+}
+
+#edit-card{
+  text-align: right;
+}
+
+#add-relationship{
+  color: black;
+  length: 50px;
+}
