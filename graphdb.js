@@ -122,4 +122,7 @@ rep.relationshipEditDescription = function(relId, newDesc, callback) {
 // TODO: get relationship by id
 // TODO: get all relationships
 
+// TODO: count nodes
+// TODO: search nodes by name
+
 module.exports = rep;
