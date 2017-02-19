@@ -13,7 +13,11 @@ var exports = module.exports = function(server) {
 
     socket.on('quiz', (quiz) => {isQuizzing = true;});
     if(isQuizzing == true){
-      var totalNodes = db.getNodeCount();//use JEffrey database to see how many nodes in user set
+      var totalNodes;
+      db.getNodeCount((dat) => {
+        totalNodes = dat;
+      });
+
       while(isQuizzing){
         if(totalNodes == 0){
           isQuizzing = false;
