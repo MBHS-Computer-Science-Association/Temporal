@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var graphdb = require('../graphdb');
+
 router.use(express.static('public'));
 
 //for debugging
@@ -59,6 +61,15 @@ router.get('/graph/edit', (req,res) => {
     mock_cards,
     definition: "definition",
     term: "term"
+  });
+});
+
+router.get('/graph/real', (req,res) => {
+  graphdb.getAllNodes((cards) => {
+    res.render('graph', {
+      edit: true,
+      cards
+    });
   });
 });
 
