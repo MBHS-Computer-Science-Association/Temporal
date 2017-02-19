@@ -11,6 +11,7 @@ var exports = module.exports = function(server) {
       console.log("User disconnected.");
     });
 
+    isQuizzing = true;
   socket.on('quiz', (quiz) => {isQuizzing = true;});
     if(isQuizzing == true){
       var totalNodes;
@@ -25,33 +26,32 @@ var exports = module.exports = function(server) {
         var nextQuestion = false;
         var isCorrect = false;
         var list;
-        db.getAllNodes(function(param){
-          list = param;
+        db.getAllNodes((callback)=>{
+          list = callback;
         });
         var related;
-        for(var i = 0; i < totalNodes; i++){
-          if(list[i].id == totalNodes){
-            rdb.getRelatedNodes(i, (info)=>{
-              related = info;
-            });//RANDOMIZE WHICH RELATE
-          //  data = [[list[i].name],[related[0]],[]];
-        }
-      }
-      var data;
-        data = [["Russian Revolution","Vietnam War","both are wars"], ["Thy", "Trevor", "both are the same person"],["Renaissance","Scientific Revolution","both changed the world"],["Donald Trump", "Vladimir Putin", "both are working for Russia"]];
+      //   for(var i = 0; i < totalNodes; i++){
+      //     if(list[i].id == totalNodes){
+      //       rdb.getRelatedNodes(i, (info)=>{
+      //         related = info;
+      //       });//RANDOMIZE WHICH RELATE
+      //     //  data = [[list[i].name],[related[0]],[]];
+      //   }
+      // }
+      var data = [["Russian Revolution","Vietnam War","both are wars"], ["Thy", "Trevor", "both are the same person"],["Renaissance","Scientific Revolution","both changed the world"],["Donald Trump", "Vladimir Putin", "both are working for Russia"]];
 
         console.log('about to emit');
-        socket.emit('data', [["Russian Revolution","Vietnam War","both are wars"], ["Thy", "Trevor", "both are the same person"],["Renaissance","Scientific Revolution","both changed the world"],["Donald Trump", "Vladimir Putin", "both are working for Russia"]]);
+        socket.emit('data', data);
         console.log('we tried to emit');
 
         while(!nextQuestion){
+          var answ;
         socket.on('answer', (answer) => {
-          //TODO: change the answer checker
-          console.log(answer+ '');
-          if(answer == 1){
+          answ = answer;
+        });
+          if(answ == 1){
             isCorrect = true;
           }
-        });
         if(isCorrect){
             socket.emit('nextQ', true);
             nextQuestion = true;
