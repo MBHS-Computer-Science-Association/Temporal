@@ -11,6 +11,10 @@ var graphdb = require('../graphdb');
 
 router.use(express.static('public'));
 
+router.get('/', (req, res) => {
+  res.render('index');
+});
+
 //for debugging
 router.get('/card', (req, res) => {
   res.render('card');
@@ -109,6 +113,10 @@ router.get('/graph/real', (req,res) => {
 router.get('/quiz', (req, res) => {
   res.render('quiz');
 
+});
+
+router.get('/about', (req, res) => {
+  res.render('about');
 });
 
 module.exports = router;
