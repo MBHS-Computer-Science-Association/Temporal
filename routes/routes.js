@@ -29,6 +29,7 @@ router.get('/graph', (req,res) => {
 
 router.get('/quiz', (req, res) => {
   res.render('quiz');
+
 });
 
 module.exports = router;
