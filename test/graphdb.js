@@ -30,4 +30,15 @@ describe('graphene database', () => {
       });
     });
   });
+
+  describe('getAllNodes', () => {
+    it('should get all nodes', (done) => {
+      graphdb.getNode((nodes) => {
+        nodes.forEach((node) => {
+          console.log(node);
+        });
+        done();
+      });
+    });
+  });
 });

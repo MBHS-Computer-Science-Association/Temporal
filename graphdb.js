@@ -46,7 +46,17 @@ rep.getNode = function(nodeId, callback) {
     if (err) throw err;
     if (callback) callback(result[0]);
   });
-}
+};
+
+/**
+  callback - ([node])
+*/
+rep.getAllNodes = function(callback) {
+  db.query("MATCH (n) RETURN n", (err, result) => {
+    if (err) throw err;
+    if (callback) callback(result);
+  });
+};
 
 /**
   nodeId - id of the node to edit
