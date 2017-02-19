@@ -23,6 +23,7 @@ var exports = module.exports = function(server) {
         console.log('we tried to emit');
 
           var answ;
+          var isCorrect = false;
         socket.on('answer', (answer) => {
           console.log(answer+ '');
           answ = answer;
