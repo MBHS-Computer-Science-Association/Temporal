@@ -32,10 +32,7 @@ auth.login = (username, password) => {
       throw err;
     }
     retrows.unshift(res.rows);
-    for ( i = 0; i < retrows.length; i++ ) {
-      console.log("Ret: " + JSON.stringify(retrows[i]));
-    }
-    count = res.rows[0];
+    count = retrows[i].count;
     db.end((err) => {
       if (err) {
         console.log("Error with ending");
