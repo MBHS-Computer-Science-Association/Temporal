@@ -49,6 +49,7 @@ var mock_cards = [
 router.get('/graph', (req,res) => {
   res.render('graph', {
     edit: false,
+    resp: res,
     mock_cards,
     definition: "definition",
     term: "term"

@@ -15,8 +15,9 @@
   <body>
     <div class="ui bottom attached segment pushable">
      <% include header.ejs%>
+     <script src="editCard.js" language="Javascript" type="text/javascript"></script>
      <div id="edit">
-       <button class="ui labeled icon button" onclick="<% edit = false %>;/graph/edit;">
+       <button class="ui labeled icon button" onclick="editCard(<%= edit%>, <%= resp%>)">
          <i class="edit icon"></i>
            Edit
          </button>
