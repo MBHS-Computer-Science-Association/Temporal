@@ -36,4 +36,24 @@ describe('graphene database', () => {
       });
     });
   });
+
+  describe('nodeEditTitle', () => {
+    it('should change the title');
+  });
+
+  describe('nodeEditDescription', () => {
+    it('should change the description');
+  });
+
+  describe('createRelationship', () => {
+    it('should create a new relationship with title and description');
+  });
+
+  describe('relationshipEditTitle', () => {
+    it('should change the title');
+  });
+
+  describe('relationshipEditDescription', () => {
+    it('should change the description');
+  });
 });
