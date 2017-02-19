@@ -16,10 +16,10 @@
 
     <div id ="login">
       <h1 class="ui header">Login</h1>
-      <form class="ui form" id="login-form" name=login enctype="multipart/form-data" method="post">
-          <input id="username" type="text" placeholder="username">
+      <form class="ui form" id="login-form" name=login enctype="multipart/form-data" method="GET" action="loginsubmit">
+          <input name="username" type="text" placeholder="username">
 
-          <input id="password" type="password" placeholder="password">
+          <input name="password" type="password" placeholder="password">
 
         <div id="login-button" class="ui input">
           <br>

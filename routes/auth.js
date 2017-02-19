@@ -19,9 +19,9 @@ router.get('/login', (req, res) => {
   // initial login stuff
   res.sendFile(path.resolve(__dirname + '/../public/login.html'));
 });
-router.post('/login', (req, res) => {
+router.get('/loginsubmit', (req, res) => {
   // authenticate login
-  if ( auth.login( req.query.username, req.query.password ) === true ) {
+  if ( auth.login( req.query.username, req.query.password ) !== false ) {
     // Session stored in sess
     // TODO: do something with sess
     sess = auth.createSession(req, res, req.query.username);
@@ -42,8 +42,8 @@ router.get('/signup', (req, res) => {
   // create an account
   res.sendFile(path.resolve(__dirname + '/../public/signup.html'));
 });
-router.post('/signup', (req, res) => {
-  res.send(auth.signup(req.query.username, req.query.password, req.query.email));
+router.get('/signupsubmit', (req, res) => {
+  res.send(req.query.username + " " + auth.signup(req.query.username, req.query.password, req.query.email));
   // if ( auth.signup( req.query.username, req.query.password, req.query.email ) ) {
   //   res.send("Creation failure not detected or success");
   // } else {
