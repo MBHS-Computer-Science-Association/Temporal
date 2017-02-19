@@ -42,10 +42,10 @@
           var $el = $(this);
 
           var $input = $('<input/>').val( $el.text() );
-          $el.replaceWith( $input );
+          $el.replaceWith( $input + '<i class=\'checkmark icon\'></i>');
 
           var save = function(){
-            var $p = $('<p data-editable />').text( $input.val() ) + '<i class=\'checkmark icon\'></i>';
+            var $p = $('<p data-editable />').text( $input.val() );
             $input.replaceWith($p);
           };
 
