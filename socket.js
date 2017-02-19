@@ -43,7 +43,7 @@ var exports = module.exports = function(server) {
         while(!nextQuestion){
         socket.on('answer', (answer) => {
           //TODO: change the answer checker
-          console.log(anwser+ '');
+          console.log(answer+ '');
           if(answer == 1){
             isCorrect = true;
           }
